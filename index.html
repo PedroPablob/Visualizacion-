@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Urdimbre Peatonal - Flujos Sotomayor</title>
+    <title>Urdimbre Peatonal - Flujos en Plaza Sotomayor</title>
     
     <link rel="stylesheet" href="style.css">
 
@@ -12,9 +12,9 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
-<body>
+<body class="light-mode">
 
-    <!-- TOOLTIP FLOTANTE (Hover en Ondas y Nodos) -->
+    <!-- TOOLTIP FLOTANTE (Al pasar el cursor sobre ondas o esquinas) -->
     <div id="hover-tooltip">
         <div class="tt-header">
             <span id="tt-badge" class="tt-badge">ESQUINA</span>
@@ -29,45 +29,45 @@
     <header id="hero-3d">
         <div id="sidebar">
             <h1>URDIMBRE PEATONAL</h1>
-            <p class="subtitle">El espacio esculpido por el vacío</p>
+            <p class="subtitle">Cómo se mueven las personas en Plaza Sotomayor</p>
 
-            <!-- SELECTOR DE TEMA (OSCURO / BLANCO) -->
-            <button id="btn-theme" class="btn-theme" aria-label="Cambiar entre modo oscuro y modo blanco">
+            <!-- SELECTOR DE TEMA (CLARO POR DEFECTO / OSCURO) -->
+            <button id="btn-theme" class="btn-theme" aria-label="Cambiar entre fondo claro y fondo oscuro">
                 <span id="theme-icon" class="theme-dot"></span>
-                <span id="theme-text">MODO BLANCO: DESACTIVADO</span>
+                <span id="theme-text">CAMBIAR A FONDO OSCURO</span>
             </button>
 
-            <div class="filter-title">Hilos de Origen</div>
-            <button class="toggle-btn active corner-btn" data-corner="1">E1: Blanco N. <div class="indicator c-e1"></div></button>
-            <button class="toggle-btn active corner-btn" data-corner="2">E2: Est. Puerto <div class="indicator c-e2"></div></button>
-            <button class="toggle-btn active corner-btn" data-corner="3">E3: Cochrane N. <div class="indicator c-e3"></div></button>
-            <button class="toggle-btn active corner-btn" data-corner="4">E4: Cochrane S. <div class="indicator c-e4"></div></button>
-            <button class="toggle-btn active corner-btn" data-corner="5">E5: Eje Prat <div class="indicator c-e5"></div></button>
-            <button class="toggle-btn active corner-btn" data-corner="6">E6: Armada <div class="indicator c-e6"></div></button>
+            <div class="filter-title">Esquinas de la Plaza</div>
+            <button class="toggle-btn active corner-btn" data-corner="1">1. Calle Blanco (Paraderos) <div class="indicator c-e1"></div></button>
+            <button class="toggle-btn active corner-btn" data-corner="2">2. Salida Metro Puerto <div class="indicator c-e2"></div></button>
+            <button class="toggle-btn active corner-btn" data-corner="3">3. Cochrane Norte (Comercio) <div class="indicator c-e3"></div></button>
+            <button class="toggle-btn active corner-btn" data-corner="4">4. Cochrane Sur (Cruce) <div class="indicator c-e4"></div></button>
+            <button class="toggle-btn active corner-btn" data-corner="5">5. Calle Prat (Bancos) <div class="indicator c-e5"></div></button>
+            <button class="toggle-btn active corner-btn" data-corner="6">6. Edificio Armada <div class="indicator c-e6"></div></button>
 
-            <!-- RELACIONES CLAVE -->
-            <div class="filter-title">Relaciones Clave</div>
-            <button class="toggle-btn scenario-btn" data-scenario="intermodal">E1 ↔ E2: El Eje Intermodal <div class="indicator s-rel"></div></button>
-            <button class="toggle-btn scenario-btn" data-scenario="laboral">E4 ↔ E5: La Diagonal de Riesgo <div class="indicator s-rel"></div></button>
-            <button class="toggle-btn scenario-btn" data-scenario="paseo">E3 ↔ E6: El Paseo y el Sol <div class="indicator s-rel"></div></button>
+            <!-- TRAYECTOS PRINCIPALES -->
+            <div class="filter-title">Trayectos más Frecuentes</div>
+            <button class="toggle-btn scenario-btn" data-scenario="intermodal">Transbordo: Micro ↔ Metro <div class="indicator s-rel"></div></button>
+            <button class="toggle-btn scenario-btn" data-scenario="laboral">Camino Rápido: Bancos ↔ Paraderos <div class="indicator s-rel"></div></button>
+            <button class="toggle-btn scenario-btn" data-scenario="paseo">Paseo: Comercio ↔ Monumento <div class="indicator s-rel"></div></button>
 
-            <div class="filter-title">Fricciones Estructurales</div>
-            <button class="toggle-btn friction-btn" data-friction="vehiculos">Tensión Vehicular <div class="indicator f-vehiculos"></div></button>
-            <button class="toggle-btn friction-btn" data-friction="personas">Nudos (Aglomeración) <div class="indicator f-personas"></div></button>
-            <button class="toggle-btn friction-btn" data-friction="desorientacion">Desorientación Espacial <div class="indicator f-desorientacion"></div></button>
+            <div class="filter-title">Obstáculos en el Camino</div>
+            <button class="toggle-btn friction-btn" data-friction="vehiculos">Paso de Autos y Micros <div class="indicator f-vehiculos"></div></button>
+            <button class="toggle-btn friction-btn" data-friction="personas">Veredas Llenas de Gente <div class="indicator f-personas"></div></button>
+            <button class="toggle-btn friction-btn" data-friction="desorientacion">Cruces sin Señalización <div class="indicator f-desorientacion"></div></button>
 
-            <div class="filter-title">Velocidad del Tejido</div>
+            <div class="filter-title">Velocidad del Movimiento</div>
             <div class="speed-control">
                 <input type="range" id="speed-slider" min="0.2" max="4" step="0.1" value="0.2">
-                <div class="speed-labels"><span>Pausa/Lento</span><span>Rápido</span></div>
+                <div class="speed-labels"><span>Lento</span><span>Rápido</span></div>
             </div>
 
-            <button id="btn-concreto" class="btn-concreto">REVELAR TERRITORIO</button>
+            <button id="btn-concreto" class="btn-concreto">MOSTRAR MAPA Y CALLES</button>
         </div>
 
         <div class="leyenda-instruccion">
             <h2>VISUALIZACIÓN</h2>
-            <p>Haz clic en los filtros para enfocar zonas.<br>Posa el cursor sobre las ondas o nodos activos.</p>
+            <p>Usa el menú izquierdo para explorar los recorridos.<br>Pasa el cursor sobre cualquier onda de color para ver cuánta gente pasó.</p>
         </div>
 
         <!-- OVERLAY CINEMÁTICO (TEXTO PERFECTAMENTE CENTRADO) -->
@@ -77,9 +77,9 @@
 
         <button id="skip-intro" class="skip-intro-btn" aria-label="Saltar introducción">Saltar intro →</button>
 
-        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir controles">Controles</button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir controles">Menú</button>
 
-        <a href="landing.html" class="scroll-down">Descubrir el Fundamento ↓</a>
+        <a href="landing.html" class="scroll-down">Conocer el Proyecto y Cómo Funciona ↓</a>
 
         <div id="canvas-container"></div>
     </header>

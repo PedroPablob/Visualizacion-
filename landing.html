@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing — Urdimbre Peatonal | Flujos Sotomayor</title>
+    <title>Landing — Urdimbre Peatonal | Cómo Funciona el Proyecto</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -124,11 +124,11 @@
         }
 
         .manifesto-header h1 {
-            font-size: clamp(2.4em, 5vw, 4.2em);
+            font-size: clamp(2.2em, 4.8vw, 3.9em);
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: -1.8px;
-            line-height: 1.02;
+            letter-spacing: -1.6px;
+            line-height: 1.04;
             margin: 0 0 24px 0;
             color: var(--text-main);
         }
@@ -144,10 +144,10 @@
         .lead-quote {
             font-family: 'Lora', serif;
             font-style: italic;
-            font-size: clamp(1.18em, 2vw, 1.5em);
+            font-size: clamp(1.15em, 1.9vw, 1.45em);
             line-height: 1.65;
             color: #2c2927;
-            max-width: 780px;
+            max-width: 800px;
             margin: 0;
         }
 
@@ -294,7 +294,7 @@
             text-align: left;
         }
 
-        /* BANDA CONTINUA OSCURA PARA LAS TRES TOPOGRAFÍAS DE LA FRICCIÓN */
+        /* BANDA CONTINUA OSCURA PARA LOS OBSTÁCULOS EN EL CAMINO */
         .dark-bleed {
             background-color: var(--bg-ink);
             color: #f0f0f2;
@@ -361,15 +361,15 @@
             margin: 0 0 18px 0;
         }
 
-        .topo-math {
-            font-family: monospace;
-            font-size: 0.8em;
-            color: rgba(255, 255, 255, 0.65);
-            border-left: 2px solid rgba(255, 255, 255, 0.25);
+        .topo-shape {
+            font-size: 0.78em;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.8);
+            border-left: 2px solid rgba(255, 255, 255, 0.3);
             padding-left: 12px;
         }
 
-        /* LISTADO ABIERTO DE LAS 6 ESQUINAS Y RELACIONES */
+        /* LISTADO ABIERTO DE LAS 6 ESQUINAS Y TRAYECTOS */
         .corners-ledger {
             width: 100%;
             border-collapse: collapse;
@@ -565,10 +565,10 @@
         <div class="nav-wrap">
             <a href="index.html" class="nav-brand">Urdimbre Peatonal</a>
             <nav class="nav-links">
-                <a href="#origen">El Origen</a>
-                <a href="#interaccion">Cómo Funciona</a>
-                <a href="#fricciones">Topografías</a>
-                <a href="#esquinas">Esquinas</a>
+                <a href="#origen">Qué es</a>
+                <a href="#interaccion">Cómo Usar</a>
+                <a href="#fricciones">Obstáculos</a>
+                <a href="#esquinas">Las 6 Esquinas</a>
                 <a href="index.html" class="return-link">← Volver a la Visualización</a>
             </nav>
         </div>
@@ -579,11 +579,11 @@
 
             <!-- MANIFIESTO PRINCIPAL -->
             <section class="manifesto-header">
-                <span class="kicker">Plaza Sotomayor, Valparaíso • Estudio de Flujos y Fricciones</span>
-                <h1>De lo Tangible<br>a lo Generativo</h1>
+                <span class="kicker">Plaza Sotomayor, Valparaíso • Visualización de Movimiento Urbano</span>
+                <h1>El Movimiento de la Plaza<br>Convertido en Ondas</h1>
                 <div class="color-bar"></div>
                 <p class="lead-quote">
-                    «En esta visualización, los flujos de las personas se transforman en ondas de luz y color que atraviesan la plaza. Al suprimir los límites arquitectónicos, revelamos que es el movimiento humano y su fricción lo que esculpe el vacío.»
+                    «En esta visualización, cada onda de color representa el camino real de las personas al cruzar la Plaza Sotomayor. Al ocultar los edificios al principio, dejamos que sean los pasos de la gente los que dibujen la forma de la plaza.»
                 </p>
             </section>
 
@@ -591,110 +591,110 @@
             <div class="open-metrics">
                 <div class="metric-item">
                     <span class="m-num">12.299</span>
-                    <span class="m-label">Peatones Contabilizados</span>
-                    <span class="m-note">Medidos a lo largo de 539 minutos de observación continua en terreno.</span>
+                    <span class="m-label">Personas Observadas</span>
+                    <span class="m-note">Contadas en terreno durante casi 9 horas de observación en las 6 esquinas.</span>
                 </div>
                 <div class="metric-item">
                     <span class="m-num">96</span>
                     <span class="m-label">Personas Encuestadas</span>
-                    <span class="m-note">94,8% población activa y 59,4% impulsada por el transbordo de transporte público.</span>
+                    <span class="m-note">La gran mayoría (59%) pasa por la plaza para cambiar entre micro, metro o colectivo.</span>
                 </div>
                 <div class="metric-item">
-                    <span class="m-num">6 Esquinas</span>
-                    <span class="m-label">Ondas de Flujo</span>
-                    <span class="m-note">Cada vértice emite ondas de su propio color que representan el paso real de la gente.</span>
+                    <span class="m-num">6 Colores</span>
+                    <span class="m-label">6 Esquinas de Acceso</span>
+                    <span class="m-note">Cada esquina tiene un color propio y lanza ondas hacia los demás puntos de la plaza.</span>
                 </div>
                 <div class="metric-item">
                     <span class="m-num">56%</span>
-                    <span class="m-label">Cruce Informal Máximo</span>
-                    <span class="m-note">Porcentaje de transeúntes que cruza fuera de paso habilitado en Cochrane Sur (E4).</span>
+                    <span class="m-label">Cruza sin Paso de Cebra</span>
+                    <span class="m-note">En esquinas como Cochrane Sur, más de la mitad corta camino por fuera del cruce.</span>
                 </div>
             </div>
 
-            <!-- CAPÍTULO 01: METODOLOGÍA Y ABSTRACCIÓN -->
+            <!-- CAPÍTULO 01: QUÉ ES Y POR QUÉ SE REPRESENTA CON ONDAS -->
             <section id="origen" class="chapter">
                 <div class="chapter-index">
-                    <span class="chapter-num">01 — FUNDAMENTO</span>
-                    <h2>Las Ondas como Flujo Humano</h2>
-                    <p>De la observación física en la Plaza Sotomayor a un tejido tridimensional en movimiento.</p>
+                    <span class="chapter-num">01 — QUÉ ES EL PROYECTO</span>
+                    <h2>Las Personas Representadas como Ondas</h2>
+                    <p>Por qué transformamos las caminatas de la gente en un tejido en movimiento.</p>
                 </div>
 
                 <div class="chapter-body">
-                    <h3>El Origen de los Datos: Personas Convertidas en Ondas</h3>
+                    <h3>Del conteo en la calle a la visualización</h3>
                     <p>
-                        El proyecto <strong>Urdimbre Peatonal</strong> nace del levantamiento directo de datos en la Plaza Sotomayor de Valparaíso. Tras observar sistemáticamente sus seis esquinas durante <strong>539 minutos</strong> (registrando el paso de <strong>12.299 peatones</strong>) y encuestar a <strong>96 transeúntes en terreno</strong>, tradujimos las trayectorias reales de las personas en un sistema vivo de <strong>ondas tridimensionales</strong>. Cada onda luminosa que viaja de un extremo a otro representa el flujo de personas desplazándose entre las esquinas de la plaza, exponiendo cómo la ciudad habitada desborda constantemente a la ciudad planificada.
+                        Cuando miramos un mapa tradicional de la Plaza Sotomayor, solo vemos calles, veredas y edificios. Sin embargo, en la vida diaria las personas no se mueven como robots siguiendo las aceras: apuran el paso para alcanzar una micro, rodean grupos de gente o cruzan en diagonal para ahorrar tiempo. Para hacer visible esa realidad, observamos las 6 esquinas de la plaza durante <strong>539 minutos</strong> (contando a <strong>12.299 personas</strong>) y conversamos con <strong>96 transeúntes</strong>.
                     </p>
                     <p>
-                        Los registros demostraron que la plaza está dominada por la <strong>población activa (94,8% entre 18 y 65 años)</strong> fuertemente impulsada por la intermodalidad del transporte público (<strong>59,4%</strong> entre micro, metro y colectivo). Por el contrario, el adulto mayor (<strong>5,2%</strong>) queda drásticamente marginado del flujo debido a las barreras viales, los tiempos de cruce y la falta de lugares de descanso.
+                        En la visualización, <strong>los flujos de las personas se representan con ondas de colores</strong>. Cada esquina de la plaza tiene asignado un color distinto: las líneas que nacen de cada punto y viajan por el aire muestran hacia dónde camina la gente. Además, descubrimos que el <strong>95% de quienes transitan están en edad de trabajar o estudiar</strong>, mientras que las personas mayores (solo un <strong>5%</strong>) casi no pasan por aquí debido a lo difícil que resulta cruzar las calles.
                     </p>
 
-                    <h3>La Abstracción: El Espacio Esculpido por el Vacío</h3>
+                    <h3>¿Por qué al principio no se ven las calles ni los edificios?</h3>
                     <p>
-                        ¿Por qué borrar la arquitectura literal en la vista principal? Porque el espacio público no se define únicamente por el hormigón, sino por la urdimbre de pasos que lo transitan. Al suprimir los edificios y las veredas, dejamos que <strong>las ondas de flujo peatonal dibujen la plaza en negativo</strong>. Solo al presionar <strong>"Revelar Territorio"</strong> emerge la traza ortogonal de las manzanas y calles, haciendo evidente cómo la huella humana ignora las aceras e irrumpe en diagonal por el vacío.
+                        Al entrar a la visualización, la plaza aparece sin calles ni edificios a propósito. Queríamos mostrar que un espacio público existe gracias a las personas que lo caminan. Solo cuando presionas el botón <strong>"Mostrar Mapa y Calles"</strong> aparecen dibujadas las manzanas de la ciudad, permitiendo ver de inmediato cómo las ondas de la gente pasan por encima de las calles y cortan camino libremente.
                     </p>
                 </div>
             </section>
 
-            <!-- CAPÍTULO 02: CÓMO FUNCIONA LA VISUALIZACIÓN Y SUS ADICIONES -->
+            <!-- CAPÍTULO 02: CÓMO USAR LA VISUALIZACIÓN -->
             <section id="interaccion" class="chapter" style="border-bottom: none;">
                 <div class="chapter-index">
-                    <span class="chapter-num">02 — FUNCIONAMIENTO</span>
-                    <h2>Cómo Leer e Interactuar con la Visualización</h2>
-                    <p>Guía de los sistemas interactivos que traducen el movimiento peatonal en ondas.</p>
+                    <span class="chapter-num">02 — CÓMO FUNCIONA</span>
+                    <h2>Guía Simple para Explorar la Visualización</h2>
+                    <p>Qué hace cada botón y cómo leer la información en pantalla.</p>
                 </div>
 
                 <div class="chapter-body">
                     <p>
-                        En la visualización, cada una de las 6 esquinas de acceso tiene asignado un color e irradia pulsos que viajan hacia los demás vértices. El sistema cuenta con cinco mecánicas principales para explorar los datos recolectados:
+                        Cualquier persona puede explorar los datos de la plaza de forma muy sencilla usando el ratón y el menú del lado izquierdo:
                     </p>
 
                     <div class="mechanics-list">
                         <div class="mechanic-row">
-                            <span class="mechanic-idx">i.</span>
+                            <span class="mechanic-idx">1.</span>
                             <div class="mechanic-content">
-                                <h4>Cantidad de Peatones al Pasar el Cursor sobre las Ondas</h4>
+                                <h4>Pasa el cursor sobre cualquier onda de color</h4>
                                 <p>
-                                    Al posar el cursor directamente sobre <strong>cualquier onda de color</strong> (o sobre el nodo de su esquina), el tejido ilumina todas las ondas que nacen de ese punto y atenúa el resto. Junto al cursor se despliega la ficha de esa corriente con el <strong>total de peatones contabilizados</strong>, el flujo promedio por minuto, el pico máximo registrado, el porcentaje de personas que se detienen (en pausa) y la proporción de cruces fuera de paso habilitado.
+                                    Al acercar el mouse a cualquiera de las ondas en movimiento (o al círculo de su esquina), se iluminarán todas las ondas de ese color y aparecerá un cuadro explicativo. Ahí podrás ver <strong>cuántas personas en total pasaron por esa esquina</strong>, cuántas pasan por minuto, cuántas se detienen a esperar y qué porcentaje cruza fuera del paso de cebra.
                                 </p>
                             </div>
                         </div>
 
                         <div class="mechanic-row">
-                            <span class="mechanic-idx">ii.</span>
+                            <span class="mechanic-idx">2.</span>
                             <div class="mechanic-content">
-                                <h4>Densidad de Ondas Proporcional al Flujo Real</h4>
+                                <h4>Enciende o apaga las Esquinas de la Plaza</h4>
                                 <p>
-                                    La cantidad de ondas que emite cada esquina no es aleatoria: responde matemáticamente al volumen real de peatones por minuto medido en terreno. Así, las esquinas de mayor descarga intermodal como <strong>E1: Blanco N. (26,5 peatones/min)</strong> y <strong>E2: Est. Puerto (26,4 peatones/min)</strong> tejen un caudal de ondas más denso que sectores como <strong>E6: Armada (18,6 peatones/min)</strong>.
+                                    Los primeros 6 botones del menú corresponden a los 6 accesos de la plaza (como <strong>Calle Blanco</strong>, <strong>Salida Metro Puerto</strong> o <strong>Edificio Armada</strong>). Donde pasan más personas en la vida real, la visualización dibuja más ondas. Puedes apagar o encender esquinas para comparar su movimiento.
                                 </p>
                             </div>
                         </div>
 
                         <div class="mechanic-row">
-                            <span class="mechanic-idx">iii.</span>
+                            <span class="mechanic-idx">3.</span>
                             <div class="mechanic-content">
-                                <h4>Relaciones Clave y Vuelo de Cámara en Dos Tiempos</h4>
+                                <h4>Revisa los Trayectos más Frecuentes</h4>
                                 <p>
-                                    Los botones de <strong>Relaciones Clave</strong> permiten aislar la conexión directa entre dos esquinas específicas (como el transbordo entre micro y metro en <code>E1 ↔ E2</code>). Al activarlos, la cámara realiza un recorrido en dos tiempos: primero sube a una <strong>vista de planta cenital</strong> para mostrar el trazado en el suelo y luego desciende a una <strong>vista orbital isométrica a 45°</strong> para apreciar la altura y curvatura de las ondas.
+                                    En la sección <strong>Trayectos más Frecuentes</strong> puedes elegir los 3 recorridos más importantes que hace la gente (por ejemplo, el cambio entre micro y metro). Al hacer clic, la cámara viajará automáticamente: primero mirará desde arriba como un plano y luego bajará de costado para mostrar la altura de las ondas.
                                 </p>
                             </div>
                         </div>
 
                         <div class="mechanic-row">
-                            <span class="mechanic-idx">iv.</span>
+                            <span class="mechanic-idx">4.</span>
                             <div class="mechanic-content">
-                                <h4>Modo Blanco de Alto Contraste</h4>
+                                <h4>Activa los Obstáculos en el Camino</h4>
                                 <p>
-                                    El botón <strong>Modo Blanco</strong> transforma el espacio oscuro en un lienzo claro de corte arquitectónico. Para que las ondas se lean con nitidez sobre el blanco, la visualización recalibra la saturación de los seis colores, invierte la tipografía a negro y ensancha ópticamente el grosor de cada onda en movimiento.
+                                    Los tres botones de <strong>Obstáculos en el Camino</strong> muestran qué pasa cuando la gente se topa con problemas reales al caminar: las ondas dejan de ser curvas suaves y empiezan a dar saltos, enrollarse o desordenarse en la zona del problema.
                                 </p>
                             </div>
                         </div>
 
                         <div class="mechanic-row">
-                            <span class="mechanic-idx">v.</span>
+                            <span class="mechanic-idx">5.</span>
                             <div class="mechanic-content">
-                                <h4>Velocidad del Tejido y Revelar Territorio</h4>
+                                <h4>Cambia la Velocidad, el Fondo o Muestra el Mapa</h4>
                                 <p>
-                                    El control deslizante permite desacelerar las ondas para inspeccionarlas con calma o acelerar el pulso del flujo urbano. Por su parte, el botón <strong>Revelar Territorio</strong> hace aparecer la cuadrícula de calles y edificios bajo las ondas para comparar las aceras formales con los caminos reales que toma la gente.
+                                    Puedes mover la barra de <strong>Velocidad del Movimiento</strong> para ver las ondas viajar en cámara lenta o rápida, presionar <strong>Mostrar Mapa y Calles</strong> para ver los edificios de la plaza desde arriba, o alternar entre el <strong>Fondo Claro</strong> (activado por defecto para mayor claridad) y el <strong>Fondo Oscuro</strong>.
                                 </p>
                             </div>
                         </div>
@@ -704,56 +704,56 @@
 
         </div>
 
-        <!-- BANDA OSCURA CONTINUA: LAS TRES TOPOGRAFÍAS DE LA FRICCIÓN -->
+        <!-- BANDA OSCURA CONTINUA: LOS TRES OBSTÁCULOS EN EL CAMINO -->
         <section id="fricciones" class="dark-bleed">
             <div class="editorial-sheet">
-                <span class="kicker">03 — Por qué se Deforman las Ondas</span>
-                <h2>Las Tres Topografías de la Fricción</h2>
+                <span class="kicker">03 — Obstáculos en el Camino</span>
+                <h2>¿Por qué se Deforman las Ondas?</h2>
                 <p class="dark-intro">
-                    Cuando el paso peatonal es fluido, las ondas describen arcos limpios y continuos. Sin embargo, al activar las <strong>Fricciones Estructurales</strong>, las ondas se deforman en altura y dirección según los tres principales obstáculos detectados en las encuestas:
+                    Cuando una persona camina sin problemas, su onda dibuja un arco suave y continuo. Pero cuando activas los <strong>Obstáculos en el Camino</strong>, las ondas cambian su forma para representar las tres mayores dificultades que vive la gente en la plaza:
                 </p>
 
                 <div class="topography-stream">
                     <div class="topo-column">
                         <div class="topo-line" style="background: #ff4444;"></div>
-                        <h3>1. Tensión Vehicular</h3>
-                        <span class="topo-stat" style="color: #ff4444;">26,0% de menciones • Hasta 16,0 veh/min</span>
+                        <h3>1. Paso de Autos y Micros</h3>
+                        <span class="topo-stat" style="color: #ff4444;">Principal molestia (26%) • Hasta 16 autos/min</span>
                         <p>
-                            Las ondas se quiebran y se elevan en <strong>picos agudos y violentos</strong>. Representa el estrés, la velocidad de los autos y la interrupción abrupta del paso al tener que esquivar el flujo vehicular pesado en los ejes Prat, Cochrane y Blanco.
+                            Las ondas se quiebran y dan <strong>saltos bruscos hacia arriba</strong>. Esto representa la tensión, el susto y el freno repentino de las personas cuando tienen que esquivar autos, taxis y micros que doblan rápido por las esquinas.
                         </p>
-                        <div class="topo-math">py += |sin(j × 5)| × 125 × influence</div>
+                        <div class="topo-shape">Efecto en la onda: Picos altos y quebrados en vertical.</div>
                     </div>
 
                     <div class="topo-column">
                         <div class="topo-line" style="background: #ffaa00;"></div>
-                        <h3>2. Nudos de Aglomeración</h3>
-                        <span class="topo-stat" style="color: #ffaa00;">13,5% de menciones • Hasta 19 en espera</span>
+                        <h3>2. Veredas Llenas de Gente</h3>
+                        <span class="topo-stat" style="color: #ffaa00;">14% de menciones • Hasta 19 esperando micro</span>
                         <p>
-                            Las ondas pierden fluidez y se estancan a ras de suelo formando <strong>espirales densas</strong>. Grafica los bloqueos en veredas estrechas donde los flujos que salen del Metro (18,8%) chocan con las personas detenidas esperando micro en los paraderos (11,1% en pausa).
+                            Las ondas bajan a ras de suelo y se <strong>enrollan formando remolinos</strong>. Muestra los tapones de gente que se arman donde la vereda es muy angosta y quienes salen del Metro Puerto chocan con la fila del paradero.
                         </p>
-                        <div class="topo-math">px += sin(j × 2) × 50 • py -= 15 × influence</div>
+                        <div class="topo-shape">Efecto en la onda: Espirales apretadas a nivel del suelo.</div>
                     </div>
 
                     <div class="topo-column">
                         <div class="topo-line" style="background: #9b59b6;"></div>
-                        <h3>3. Desorientación Espacial</h3>
-                        <span class="topo-stat" style="color: #9b59b6;">16,7% desorientación • 56% cruce informal</span>
+                        <h3>3. Cruces sin Señalización</h3>
+                        <span class="topo-stat" style="color: #9b59b6;">17% se desorienta • Hasta 56% cruza libre</span>
                         <p>
-                            Las ondas se deshilachan, perdiendo su dirección recta para comenzar a <strong>oscilar y deambular</strong>. Evidencia la duda del peatón por la falta de señalización clara en la explanada central, lo que lleva a que hasta un 56% cruce por lugares no habilitados.
+                            Las ondas pierden su dirección recta y comienzan a <strong>abrirse y zigzaguear</strong>. Refleja la duda de las personas al cruzar por el centro de la plaza, donde la falta de pasos claros hace que más de la mitad cruce por cualquier parte.
                         </p>
-                        <div class="topo-math">px += sin(j × 0.8) × 90 • pz += cos(j × 0.6) × 90</div>
+                        <div class="topo-shape">Efecto en la onda: Curvas anchas que se desvían de su ruta.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CAPÍTULO 04: SÍNTESIS DE ESQUINAS Y RELACIONES -->
+        <!-- CAPÍTULO 04: SÍNTESIS DE ESQUINAS Y TRAYECTOS -->
         <div class="editorial-sheet">
             <section id="esquinas" class="chapter">
                 <div class="chapter-index">
-                    <span class="chapter-num">04 — SÍNTESIS DE DATOS</span>
-                    <h2>Hilos de Origen y Relaciones Clave</h2>
-                    <p>Cifras consolidadas que alimentan cada color de onda dentro de la visualización.</p>
+                    <span class="chapter-num">04 — DATOS EN SIMPLE</span>
+                    <h2>Las 6 Esquinas y sus Recorridos</h2>
+                    <p>Resumen de cuántas personas pasan y qué ocurre en cada rincón de la plaza.</p>
                 </div>
 
                 <div class="chapter-body">
@@ -761,80 +761,80 @@
                         <thead>
                             <tr>
                                 <th>Esquina y Color de Onda</th>
-                                <th>Peatones Totales</th>
-                                <th>Ritmo (Pico)</th>
-                                <th>En Pausa</th>
-                                <th>Cruce Informal</th>
-                                <th>Flujo Vehicular</th>
+                                <th>Total Personas</th>
+                                <th>Personas / min</th>
+                                <th>Se Detienen</th>
+                                <th>Cruzan sin Paso</th>
+                                <th>Qué ocurre en este punto</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td><span class="swatch" style="background:var(--c-e1)"></span><strong>E1: Blanco N.</strong></td>
+                                <td><span class="swatch" style="background:var(--c-e1)"></span><strong>1. Calle Blanco</strong></td>
                                 <td><strong>2.650</strong> (100 min)</td>
-                                <td>26,5/min (41,0)</td>
-                                <td>7,1%</td>
-                                <td>19% (13,6/min)</td>
-                                <td>16,0 veh/min</td>
+                                <td>~27 / min</td>
+                                <td>7%</td>
+                                <td>19%</td>
+                                <td>Paradero principal donde baja más gente de las micros.</td>
                             </tr>
                             <tr>
-                                <td><span class="swatch" style="background:#e5c31b"></span><strong>E2: Est. Puerto</strong></td>
+                                <td><span class="swatch" style="background:#d99b00"></span><strong>2. Salida Metro Puerto</strong></td>
                                 <td><strong>2.350</strong> (89 min)</td>
-                                <td>26,4/min (45,2)</td>
-                                <td>9,0%</td>
-                                <td>27% (9,5/min)</td>
-                                <td>14,2 veh/min</td>
+                                <td>~26 / min</td>
+                                <td>9%</td>
+                                <td>27%</td>
+                                <td>Salida de pasajeros del tren y locales de comida al paso.</td>
                             </tr>
                             <tr>
-                                <td><span class="swatch" style="background:var(--c-e3)"></span><strong>E3: Cochrane N.</strong></td>
+                                <td><span class="swatch" style="background:var(--c-e3)"></span><strong>3. Cochrane Norte</strong></td>
                                 <td><strong>1.953</strong> (90 min)</td>
-                                <td>21,7/min (39,0)</td>
-                                <td><strong>11,1%</strong></td>
-                                <td>43% (11,6/min)</td>
-                                <td>11,1 veh/min</td>
+                                <td>~22 / min</td>
+                                <td><strong>11%</strong></td>
+                                <td>43%</td>
+                                <td>Vereda comercial donde más gente se acumula esperando micro.</td>
                             </tr>
                             <tr>
-                                <td><span class="swatch" style="background:var(--c-e4)"></span><strong>E4: Cochrane S.</strong></td>
+                                <td><span class="swatch" style="background:var(--c-e4)"></span><strong>4. Cochrane Sur</strong></td>
                                 <td><strong>1.800</strong> (90 min)</td>
-                                <td>20,0/min (29,8)</td>
-                                <td>9,1%</td>
-                                <td><strong>56%</strong> (10,4/min)</td>
-                                <td>9,5 veh/min</td>
+                                <td>~20 / min</td>
+                                <td>9%</td>
+                                <td><strong>56%</strong></td>
+                                <td>Esquina donde más personas cruzan fuera del paso de cebra.</td>
                             </tr>
                             <tr>
-                                <td><span class="swatch" style="background:var(--c-e5)"></span><strong>E5: Eje Prat</strong></td>
+                                <td><span class="swatch" style="background:var(--c-e5)"></span><strong>5. Calle Prat</strong></td>
                                 <td><strong>1.872</strong> (80 min)</td>
-                                <td>23,4/min (38,6)</td>
-                                <td>5,1%</td>
-                                <td>44% (9,0/min)</td>
-                                <td>10,1 veh/min</td>
+                                <td>~23 / min</td>
+                                <td>5%</td>
+                                <td>44%</td>
+                                <td>Zona de bancos y oficinas; paso rápido casi sin detenciones.</td>
                             </tr>
                             <tr>
-                                <td><span class="swatch" style="background:var(--c-e6)"></span><strong>E6: Armada</strong></td>
+                                <td><span class="swatch" style="background:var(--c-e6)"></span><strong>6. Edificio Armada</strong></td>
                                 <td><strong>1.674</strong> (90 min)</td>
-                                <td>18,6/min (37,2)</td>
-                                <td>5,4%</td>
-                                <td>49% (6,0/min)</td>
-                                <td>8,4 veh/min</td>
+                                <td>~19 / min</td>
+                                <td>5%</td>
+                                <td>49%</td>
+                                <td>Explanada al sol y acceso hacia el Barrio Puerto.</td>
                             </tr>
                         </tbody>
                     </table>
 
                     <div class="relations-open">
                         <div class="rel-col">
-                            <h4>E1 ↔ E2: El Eje Intermodal</h4>
-                            <span style="color: var(--c-e1);">5.000 peatones • 52,9/min</span>
-                            <p>El mayor volumen de transbordo: ondas densas que conectan mecánicamente la descarga de micros en Blanco con la Estación Puerto.</p>
+                            <h4>Transbordo: Micro ↔ Metro</h4>
+                            <span style="color: var(--c-e1);">5.000 personas • 53 por minuto</span>
+                            <p>Une Calle Blanco (Esquina 1) con Metro Puerto (Esquina 2). Es el flujo más intenso de gente que cambia entre micro y tren.</p>
                         </div>
                         <div class="rel-col">
-                            <h4>E4 ↔ E5: La Diagonal de Riesgo</h4>
-                            <span style="color: var(--c-e4);">3.672 peatones • 43,4/min</span>
-                            <p>Flujo laboral apresurado que une la esquina de mayor cruce informal (56%) con el corredor financiero e institucional de calle Prat.</p>
+                            <h4>Camino Rápido: Bancos ↔ Paraderos</h4>
+                            <span style="color: var(--c-e4);">3.672 personas • 43 por minuto</span>
+                            <p>Conecta Cochrane Sur (Esquina 4) con Calle Prat (Esquina 5). Flujo apurado de trámites y trabajo que cruza entre los autos.</p>
                         </div>
                         <div class="rel-col">
-                            <h4>E3 ↔ E6: El Paseo y el Sol</h4>
-                            <span style="color: var(--c-e3);">3.627 peatones • 40,3/min</span>
-                            <p>Trayecto que vincula la sombra saturada de espera en las marquesinas de Cochrane con la explanada abierta frente al monumento.</p>
+                            <h4>Paseo: Comercio ↔ Monumento</h4>
+                            <span style="color: var(--c-e3);">3.627 personas • 40 por minuto</span>
+                            <p>Une Cochrane Norte (Esquina 3) con el Edificio de la Armada (Esquina 6), pasando de la sombra de los locales al centro abierto de la plaza.</p>
                         </div>
                     </div>
                 </div>
@@ -857,7 +857,7 @@
             <div class="footer-about">
                 <h4>Urdimbre Peatonal</h4>
                 <p>
-                    Visualización generativa e interactiva que traduce los flujos, detenciones y fricciones peatonales registrados en la Plaza Sotomayor de Valparaíso en un tejido tridimensional de ondas de luz y color.
+                    Visualización interactiva que transforma los recorridos, pausas y dificultades de las personas en la Plaza Sotomayor de Valparaíso en un tejido tridimensional de ondas de color.
                 </p>
             </div>
             <div class="footer-meta">

@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof THREE === 'undefined') return;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x050507, 0.00095);
+    // Inicia en Modo Claro por defecto
+    scene.fog = new THREE.FogExp2(0xf4f3ef, 0.00095);
 
     const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 2800);
     camera.position.set(-400, 30, 200);
@@ -49,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     mainGroup.add(effectsGroup);
 
     let isAbstract = true;
-    let isLightMode = false;
+    let isLightMode = true; // Modo Claro por defecto
     let globalSpeed = 0.2;
     let isIntroPlaying = true;
     let introTimeline = null;
@@ -81,8 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ttData = document.getElementById('tt-data');
     const skipIntroBtn = document.getElementById('skip-intro');
 
-    // --- BASE DE DATOS OFICIAL (CONSOLIDADO 10 SALIDAS DE 10 MIN + MICAS GRUPO 4) ---
-    // Incluye paleta calibrada tanto para fondo oscuro (color) como para fondo blanco (lightColor)
+    // --- BASE DE DATOS CON LENGUAJE CLARO Y ACCESIBLE ---
     const corners = {
         1: {
             color: 0x27a2b9,
@@ -90,8 +90,9 @@ document.addEventListener('DOMContentLoaded', () => {
             colorName: "Celeste",
             x: 260,
             z: 150,
-            name: "E1: BLANCO N.",
-            shortLabel: "E1 (Blanco N.)",
+            name: "1. CALLE BLANCO",
+            fullName: "ESQUINA 1: CALLE BLANCO (PARADEROS)",
+            shortLabel: "Calle Blanco",
             minutosObs: 100,
             peatonesTotal: 2650,
             peatonesMin: 26.5,
@@ -101,9 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
             crucesMin: 13.6,
             cruceInformalPct: 19,
             vehMin: 16.0,
-            micasTrazos: 8,
-            micasStickers: 9,
-            data: "Mayor flujo peatonal (26,5/min) y vehicular (16,0 veh/min) de la plaza. Embudo de descarga intermodal de micros (31,3%) hacia Estación Puerto y BancoEstado."
+            data: "Es la esquina por donde pasa más gente de toda la plaza. Aquí bajan muchas personas de las micros para caminar hacia el Metro Puerto o ir a hacer trámites."
         },
         2: {
             color: 0xe5c31b,
@@ -111,8 +110,9 @@ document.addEventListener('DOMContentLoaded', () => {
             colorName: "Amarillo",
             x: 260,
             z: -150,
-            name: "E2: EST. PUERTO",
-            shortLabel: "E2 (Est. Puerto)",
+            name: "2. METRO PUERTO",
+            fullName: "ESQUINA 2: SALIDA METRO PUERTO",
+            shortLabel: "Metro Puerto",
             minutosObs: 89,
             peatonesTotal: 2350,
             peatonesMin: 26.4,
@@ -122,9 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
             crucesMin: 9.5,
             cruceInformalPct: 27,
             vehMin: 14.2,
-            micasTrazos: 8,
-            micasStickers: 5,
-            data: "Segundo mayor flujo (26,4/min) con pico récord de 45,2 peatones/min. Recibe las oleadas desde Estación Puerto (EFE, 18,8%) que chocan con locales gastronómicos al paso."
+            data: "El segundo punto con más movimiento. Recibe las olas de pasajeros que salen del tren en Estación Puerto y se cruzan con quienes compran en los locales de comida."
         },
         3: {
             color: 0xd13a5b,
@@ -132,8 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
             colorName: "Rosado",
             x: 0,
             z: -150,
-            name: "E3: COCHRANE N.",
-            shortLabel: "E3 (Cochrane N.)",
+            name: "3. COCHRANE NORTE",
+            fullName: "ESQUINA 3: COCHRANE NORTE (COMERCIO)",
+            shortLabel: "Cochrane Norte",
             minutosObs: 90,
             peatonesTotal: 1953,
             peatonesMin: 21.7,
@@ -143,9 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             crucesMin: 11.6,
             cruceInformalPct: 43,
             vehMin: 11.1,
-            micasTrazos: 8,
-            micasStickers: 5,
-            data: "Lidera la tasa de detención de toda la plaza (11,1% en pausa) y la presión de transporte público (1,8 micros/min y picos de hasta 19 personas esperando en vereda estrecha)."
+            data: "Es donde más gente se detiene (11%). Como la vereda es angosta y paran muchas micros, se juntan hasta 19 personas esperando locomoción afuera de los locales."
         },
         4: {
             color: 0x5db930,
@@ -153,8 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
             colorName: "Verde",
             x: 0,
             z: 150,
-            name: "E4: COCHRANE S.",
-            shortLabel: "E4 (Cochrane S.)",
+            name: "4. COCHRANE SUR",
+            fullName: "ESQUINA 4: COCHRANE SUR (CRUCE)",
+            shortLabel: "Cochrane Sur",
             minutosObs: 90,
             peatonesTotal: 1800,
             peatonesMin: 20.0,
@@ -164,9 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
             crucesMin: 10.4,
             cruceInformalPct: 56,
             vehMin: 9.5,
-            micasTrazos: 8,
-            micasStickers: 13,
-            data: "Punto récord de cruces informales: el 56% cruza fuera del paso habilitado (5,9 de 10,4 cruces/min). Combina alta frecuencia de micros (1,6/min) y esperas de hasta 13 personas."
+            data: "Aquí más de la mitad de las personas (56%) cruza la calle por fuera del paso de cebra para ahorrar tiempo o alcanzar la micro, pasando entre medio de los autos."
         },
         5: {
             color: 0x1f64c6,
@@ -174,8 +170,9 @@ document.addEventListener('DOMContentLoaded', () => {
             colorName: "Azul",
             x: -260,
             z: 150,
-            name: "E5: EJE PRAT",
-            shortLabel: "E5 (Eje Prat)",
+            name: "5. CALLE PRAT",
+            fullName: "ESQUINA 5: CALLE PRAT (BANCOS)",
+            shortLabel: "Calle Prat",
             minutosObs: 80,
             peatonesTotal: 1872,
             peatonesMin: 23.4,
@@ -185,9 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
             crucesMin: 9.0,
             cruceInformalPct: 44,
             vehMin: 10.1,
-            micasTrazos: 10,
-            micasStickers: 19,
-            data: "Corredor financiero e institucional con la menor tasa de pausa (5,1%). Predomina el flujo laboral acelerado y constante entre oficinas y bancos."
+            data: "Sector de bancos y oficinas. Es el lugar donde menos gente se queda detenida (solo 5%): casi todos caminan rápido rumbo al trabajo o a hacer trámites."
         },
         6: {
             color: 0xc9252c,
@@ -195,8 +190,9 @@ document.addEventListener('DOMContentLoaded', () => {
             colorName: "Rojo",
             x: -260,
             z: -150,
-            name: "E6: ARMADA",
-            shortLabel: "E6 (Armada)",
+            name: "6. EDIFICIO ARMADA",
+            fullName: "ESQUINA 6: EDIFICIO DE LA ARMADA",
+            shortLabel: "Edificio Armada",
             minutosObs: 90,
             peatonesTotal: 1674,
             peatonesMin: 18.6,
@@ -206,9 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
             crucesMin: 6.0,
             cruceInformalPct: 49,
             vehMin: 8.4,
-            micasTrazos: 7,
-            micasStickers: 9,
-            data: "Umbral institucional frente a la Armada y acceso a Barrio Puerto. Expuesto al sol y con baja detención (5,4%), donde el 49% cruza en diagonal fuera del paso demarcado."
+            data: "Acceso desde el Barrio Puerto frente al edificio de la Armada. Es una explanada abierta al sol donde casi la mitad de la gente (49%) corta camino en diagonal."
         }
     };
 
@@ -224,33 +218,33 @@ document.addEventListener('DOMContentLoaded', () => {
             p2: 2,
             x: 260,
             z: 0,
-            name: "EL EJE INTERMODAL (E1 ↔ E2)",
-            peatonesCombinados: "5.000 peatones",
-            flujoCombinado: "52,9 peatones/min",
-            data: "Concentra el mayor volumen de transbordo de toda la plaza (2.650 peatones en E1 + 2.350 en E2). Los cuerpos se desplazan mecánicamente entre la micro (31,3%) y Estación Puerto (18,8%).",
-            color: '#27a2b9'
+            name: "TRANSBORDO: MICRO ↔ METRO PUERTO",
+            peatonesCombinados: "5.000 personas",
+            flujoCombinado: "53 personas/min",
+            data: "Es el trayecto más transitado de toda la plaza (2.650 personas en Calle Blanco + 2.350 en Metro Puerto). Muestra el paso continuo de quienes bajan de la micro para entrar al Metro o viceversa.",
+            color: '#0f7d94'
         },
         'laboral': {
             p1: 4,
             p2: 5,
             x: -130,
             z: 150,
-            name: "LA DIAGONAL DE RIESGO (E4 ↔ E5)",
-            peatonesCombinados: "3.672 peatones",
-            flujoCombinado: "43,4 peatones/min",
-            data: "Une el vértice de mayor cruce informal (56% en E4) con el corredor financiero sin pausa (E5). Concentra la mayor tensión entre el flujo peatonal apresurado y el tránsito vehicular.",
-            color: '#5db930'
+            name: "CAMINO RÁPIDO: BANCOS ↔ PARADEROS",
+            peatonesCombinados: "3.672 personas",
+            flujoCombinado: "43 personas/min",
+            data: "Conecta la zona de bancos y oficinas de Calle Prat con los paraderos de Cochrane Sur. Es un flujo apurado donde más de la mitad de la gente cruza fuera del paso de cebra esquivando vehículos.",
+            color: '#248737'
         },
         'paseo': {
             p1: 3,
             p2: 6,
             x: -130,
             z: -150,
-            name: "EL PASEO Y EL SOL (E3 ↔ E6)",
-            peatonesCombinados: "3.627 peatones",
-            flujoCombinado: "40,3 peatones/min",
-            data: "Conecta el borde comercial saturado de espera de locomoción (11,1% de pausa en E3) con la explanada abierta frente a la Armada y el Monumento a los Héroes de Iquique (E6).",
-            color: '#d13a5b'
+            name: "PASEO: COMERCIO ↔ MONUMENTO",
+            peatonesCombinados: "3.627 personas",
+            flujoCombinado: "40 personas/min",
+            data: "Une la vereda comercial con sombra de Cochrane Norte (donde la gente espera locomoción o mira tiendas) con la gran explanada abierta al sol frente a la Armada y el Monumento.",
+            color: '#b81d43'
         }
     };
 
@@ -267,43 +261,43 @@ document.addEventListener('DOMContentLoaded', () => {
         return '#' + col.toString(16).padStart(6, '0');
     }
 
-    // --- RENDERIZADO RICO DEL TOOLTIP (ONDAS, NODOS, RELACIONES Y FRICCIONES) ---
+    // --- RENDERIZADO ACCESIBLE DEL TOOLTIP ---
     function renderCornerTooltip(cornerId, mode = 'wave', targetCornerId = null) {
         const c = corners[cornerId];
         if (!c) return;
         const hex = getCornerActiveHex(c);
 
         ttBadge.innerText = mode === 'wave'
-            ? `ONDA DE FLUJO • ${c.colorName.toUpperCase()}`
-            : `ESQUINA E${cornerId} • ${c.colorName.toUpperCase()}`;
+            ? `FLUJO DE PERSONAS • ${c.colorName.toUpperCase()}`
+            : `ESQUINA ${cornerId} • ${c.colorName.toUpperCase()}`;
         ttBadge.style.background = hex;
         ttBadge.style.color = (!isLightMode && cornerId == 2) ? '#111' : '#fff';
 
         if (mode === 'wave' && targetCornerId && corners[targetCornerId] && targetCornerId !== cornerId) {
-            ttRoute.innerText = `Trayecto E${cornerId} → E${targetCornerId}`;
+            ttRoute.innerText = `De ${c.shortLabel} a ${corners[targetCornerId].shortLabel}`;
         } else {
-            ttRoute.innerText = `${c.minutosObs} min observados`;
+            ttRoute.innerText = `Observado durante ${c.minutosObs} min`;
         }
 
-        ttTitle.innerText = c.name;
+        ttTitle.innerText = c.fullName;
         ttMetrics.innerHTML = `
             <div class="tt-metric-box highlight">
                 <div>
-                    <span class="tt-metric-val" style="color:${hex}">${formatNumber(c.peatonesTotal)} peatones</span>
-                    <span class="tt-metric-lbl">Total contabilizado (${c.minutosObs} min)</span>
+                    <span class="tt-metric-val" style="color:${hex}">${formatNumber(c.peatonesTotal)} personas</span>
+                    <span class="tt-metric-lbl">Pasaron por esta esquina (${c.minutosObs} min)</span>
                 </div>
                 <div style="text-align:right">
-                    <span class="tt-metric-val">${c.peatonesMin.toString().replace('.', ',')}/min</span>
-                    <span class="tt-metric-lbl">Pico: ${c.picoMin.toString().replace('.', ',')}/min</span>
+                    <span class="tt-metric-val">~${Math.round(c.peatonesMin)} / min</span>
+                    <span class="tt-metric-lbl">Promedio por minuto</span>
                 </div>
             </div>
             <div class="tt-metric-box">
-                <span class="tt-metric-val">${c.pausaPct.toString().replace('.', ',')}% (${c.pausaMin.toString().replace('.', ',')}/min)</span>
-                <span class="tt-metric-lbl">Personas en Pausa</span>
+                <span class="tt-metric-val">${Math.round(c.pausaPct)}% se detiene</span>
+                <span class="tt-metric-lbl">A esperar micro o semáforo</span>
             </div>
             <div class="tt-metric-box">
-                <span class="tt-metric-val">${c.cruceInformalPct}% informal</span>
-                <span class="tt-metric-lbl">${c.crucesMin.toString().replace('.', ',')} cruces/min</span>
+                <span class="tt-metric-val">${c.cruceInformalPct}% cruza libre</span>
+                <span class="tt-metric-lbl">Por fuera del paso de cebra</span>
             </div>
         `;
         ttData.innerText = c.data;
@@ -317,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const s = scenariosData[ud.id];
             const c1 = corners[s.p1];
             const c2 = corners[s.p2];
-            ttBadge.innerText = 'RELACIÓN CLAVE';
+            ttBadge.innerText = 'TRAYECTO FRECUENTE';
             ttBadge.style.background = isLightMode ? '#111115' : 'rgba(255,255,255,0.2)';
             ttRoute.innerText = `${c1.shortLabel} ↔ ${c2.shortLabel}`;
             ttTitle.innerText = s.name;
@@ -325,46 +319,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="tt-metric-box highlight">
                     <div>
                         <span class="tt-metric-val">${s.peatonesCombinados}</span>
-                        <span class="tt-metric-lbl">Volumen combinado del par</span>
+                        <span class="tt-metric-lbl">Total sumado entre ambas esquinas</span>
                     </div>
                     <div style="text-align:right">
                         <span class="tt-metric-val">${s.flujoCombinado}</span>
-                        <span class="tt-metric-lbl">Ritmo conjunto</span>
+                        <span class="tt-metric-lbl">Movimiento conjunto</span>
                     </div>
                 </div>
                 <div class="tt-metric-box">
-                    <span class="tt-metric-val">${formatNumber(c1.peatonesTotal)} peat.</span>
-                    <span class="tt-metric-lbl">${c1.name} (${c1.peatonesMin.toString().replace('.', ',')}/min)</span>
+                    <span class="tt-metric-val">${formatNumber(c1.peatonesTotal)} personas</span>
+                    <span class="tt-metric-lbl">En ${c1.shortLabel}</span>
                 </div>
                 <div class="tt-metric-box">
-                    <span class="tt-metric-val">${formatNumber(c2.peatonesTotal)} peat.</span>
-                    <span class="tt-metric-lbl">${c2.name} (${c2.peatonesMin.toString().replace('.', ',')}/min)</span>
+                    <span class="tt-metric-val">${formatNumber(c2.peatonesTotal)} personas</span>
+                    <span class="tt-metric-lbl">En ${c2.shortLabel}</span>
                 </div>
             `;
             ttData.innerText = s.data;
             tooltip.style.borderLeftColor = s.color || '#111115';
         } else if (ud.type === 'friction') {
-            ttBadge.innerText = 'FRICCIÓN ESTRUCTURAL';
+            ttBadge.innerText = 'OBSTÁCULO EN EL CAMINO';
             ttBadge.style.background = ud.color || '#ff4444';
-            ttRoute.innerText = ud.statsTag || 'Observación y Encuestas';
+            ttRoute.innerText = ud.statsTag || 'Detectado en terreno';
             ttTitle.innerText = ud.name;
             ttMetrics.innerHTML = ud.metricsHtml || '';
             ttData.innerText = ud.data;
             tooltip.style.borderLeftColor = ud.color || '#ff4444';
         } else if (ud.type === 'map') {
-            ttBadge.innerText = 'TRAZA URBANA • PLAZA SOTOMAYOR';
+            ttBadge.innerText = 'MAPA DE LA PLAZA';
             ttBadge.style.background = isLightMode ? '#111115' : 'rgba(255,255,255,0.2)';
-            ttRoute.innerText = '12.299 peatones en 539 min';
+            ttRoute.innerText = '12.299 personas observadas';
             ttTitle.innerText = ud.name;
             ttMetrics.innerHTML = `
                 <div class="tt-metric-box highlight">
                     <div>
-                        <span class="tt-metric-val">12.299 peatones</span>
-                        <span class="tt-metric-lbl">Total medido en E1–E6 (539 min)</span>
+                        <span class="tt-metric-val">12.299 personas</span>
+                        <span class="tt-metric-lbl">Contabilizadas en las 6 esquinas</span>
                     </div>
                     <div style="text-align:right">
-                        <span class="tt-metric-val">19% a 56%</span>
-                        <span class="tt-metric-lbl">Cruce fuera de paso</span>
+                        <span class="tt-metric-val">Hasta 56%</span>
+                        <span class="tt-metric-lbl">Cruza fuera del paso</span>
                     </div>
                 </div>
             `;
@@ -374,7 +368,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tooltip.classList.add('visible');
     }
 
-    // --- RESALTADO VISUAL DE ONDAS POR ESQUINA / COLOR (CALIBRADO PARA OSCURO Y BLANCO) ---
+    // --- RESALTADO VISUAL DE ONDAS POR ESQUINA / COLOR ---
     function setWaveHighlight(cornerId, specificBaseLine = null) {
         highlightedCornerId = cornerId;
         highlightedBaseLine = specificBaseLine;
@@ -402,7 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- DIBUJO DE ETIQUETAS 3D ADAPTABLES AL TEMA (SOLO NOMBRE DE ESQUINA) ---
+    // --- DIBUJO DE ETIQUETAS 3D ADAPTABLES AL TEMA (SOLO NOMBRE CLARO DE ESQUINA) ---
     function drawCornerLabelCanvas(c) {
         const canvas = c.canvas || document.createElement('canvas');
         const ctx = canvas.getContext('2d');
@@ -412,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const hex = getCornerActiveHex(c);
 
-        ctx.font = '900 38px Montserrat, sans-serif';
+        ctx.font = '900 35px Montserrat, sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
 
@@ -446,7 +440,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const spriteMat = new THREE.SpriteMaterial({ map: texture, transparent: true });
             const sprite = new THREE.Sprite(spriteMat);
-            sprite.scale.set(180, 45, 1);
+            sprite.scale.set(185, 46, 1);
             sprite.position.set(c.x, 35, c.z);
             sprite.userData = { baseY: 35, phase: Number(key) * 1.1 };
 
@@ -460,14 +454,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 color: getCornerActiveColor(c),
                 side: THREE.DoubleSide,
                 transparent: true,
-                opacity: 0.45,
-                blending: THREE.AdditiveBlending,
+                opacity: 0.65,
+                blending: THREE.NormalBlending,
                 depthWrite: false
             });
             const ring = new THREE.Mesh(ringGeo, ringMat);
             ring.rotation.x = Math.PI / 2;
             ring.position.set(c.x, 0.5, c.z);
-            ring.userData = { phase: Number(key) * 0.9, baseOpacity: 0.45 };
+            ring.userData = { phase: Number(key) * 0.9, baseOpacity: 0.65 };
             effectsGroup.add(ring);
             animatedRings.push(ring);
 
@@ -478,7 +472,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hitbox.userData = {
                 type: 'corner',
                 id: key,
-                name: c.name,
+                name: c.fullName,
                 data: c.data,
                 color: getCornerActiveHex(c),
                 dotMesh: dot
@@ -495,60 +489,60 @@ document.addEventListener('DOMContentLoaded', () => {
             c.hitbox = hitbox;
         }
 
-        // Hitboxes y anillos visuales para Zonas de Fricción
+        // Hitboxes y anillos visuales para Obstáculos en el Camino
         const frictionMeta = {
             vehiculos: {
                 y: 100,
                 h: 250,
-                name: "TENSIÓN VEHICULAR",
-                statsTag: "26,0% en encuestas • 8,4 a 16,0 veh/min",
+                name: "PASO DE AUTOS Y MICROS",
+                statsTag: "Principal molestia al caminar (26%)",
                 metricsHtml: `
                     <div class="tt-metric-box">
-                        <span class="tt-metric-val" style="color:#e02424">16,0 veh/min</span>
-                        <span class="tt-metric-lbl">Máx. en E1 (Blanco)</span>
+                        <span class="tt-metric-val" style="color:#e02424">16 autos/min</span>
+                        <span class="tt-metric-lbl">Pasan en Calle Blanco</span>
                     </div>
                     <div class="tt-metric-box">
-                        <span class="tt-metric-val">26,0% (25 enc.)</span>
-                        <span class="tt-metric-lbl">Principal barrera</span>
+                        <span class="tt-metric-val">26% de la gente</span>
+                        <span class="tt-metric-lbl">Lo señala como riesgo</span>
                     </div>
                 `,
-                data: "Los hilos se quiebran en picos agudos ante el flujo constante de vehículos (9,4 part/min y hasta 2,3 buses/min en E1), obligando a pausas tensas y esquives.",
+                data: "Las ondas dan saltos bruscos hacia arriba para mostrar el momento en que las personas deben frenar o apurarse para esquivar autos, taxis y micros.",
                 hex: '#ff4444'
             },
             personas: {
                 y: 50,
                 h: 200,
-                name: "NUDOS DE AGLOMERACIÓN",
-                statsTag: "13,5% en encuestas • Hasta 19 esperando",
+                name: "VEREDAS LLENAS DE GENTE",
+                statsTag: "Aglomeración en paraderos y salidas",
                 metricsHtml: `
                     <div class="tt-metric-box">
-                        <span class="tt-metric-val" style="color:#d98200">19 personas</span>
-                        <span class="tt-metric-lbl">Espera máx. en E3</span>
+                        <span class="tt-metric-val" style="color:#d98200">Hasta 19 personas</span>
+                        <span class="tt-metric-lbl">Esperando micro juntas</span>
                     </div>
                     <div class="tt-metric-box">
-                        <span class="tt-metric-val">11,1% en pausa</span>
-                        <span class="tt-metric-lbl">Saturación vereda</span>
+                        <span class="tt-metric-val">11% se detiene</span>
+                        <span class="tt-metric-lbl">En vereda de Cochrane</span>
                     </div>
                 `,
-                data: "En paraderos como E3 (1,8 micros/min) y E4 (1,6 micros/min), la espera acumula hasta 19 personas simultáneamente en veredas estrechas, estancando el flujo.",
+                data: "Las ondas se enrollan a ras de suelo mostrando dónde la vereda se hace estrecha y quienes salen del Metro chocan con la fila de personas esperando locomoción.",
                 hex: '#ffaa00'
             },
             desorientacion: {
                 y: 70,
                 h: 200,
-                name: "DESORIENTACIÓN Y CRUCE INFORMAL",
-                statsTag: "16,7% desorientación • Hasta 56% cruce informal",
+                name: "CRUCES SIN SEÑALIZACIÓN",
+                statsTag: "Falta de pasos claros en el centro",
                 metricsHtml: `
                     <div class="tt-metric-box">
-                        <span class="tt-metric-val" style="color:#8e44ad">56% en E4</span>
-                        <span class="tt-metric-lbl">Cruce fuera de paso</span>
+                        <span class="tt-metric-val" style="color:#8e44ad">56% de la gente</span>
+                        <span class="tt-metric-lbl">Cruza sin paso de cebra</span>
                     </div>
                     <div class="tt-metric-box">
-                        <span class="tt-metric-val">16,7% (16 enc.)</span>
-                        <span class="tt-metric-lbl">Falta señalización</span>
+                        <span class="tt-metric-val">17% encuestados</span>
+                        <span class="tt-metric-lbl">Se desorienta al cruzar</span>
                     </div>
                 `,
-                data: "La falta de señalización clara en la explanada central dispersa los vectores: entre el 43% (E3), 49% (E6) y 56% (E4) de los peatones cruza por fuera del paso habilitado.",
+                data: "Las ondas pierden su línea recta y empiezan a zigzaguear porque en el centro de la plaza faltan señales claras, haciendo que la gente cruce por cualquier parte.",
                 hex: '#9b59b6'
             }
         };
@@ -574,11 +568,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const fRingGeo = new THREE.RingGeometry(fZone.r * 0.70, fZone.r * 0.76, 48);
             const fRingMat = new THREE.MeshBasicMaterial({
-                color: fZone.color,
+                color: fZone.lightColor,
                 side: THREE.DoubleSide,
                 transparent: true,
                 opacity: 0,
-                blending: THREE.AdditiveBlending,
+                blending: THREE.NormalBlending,
                 depthWrite: false
             });
             const fRing = new THREE.Mesh(fRingGeo, fRingMat);
@@ -589,12 +583,12 @@ document.addEventListener('DOMContentLoaded', () => {
             frictionRings[fKey] = fRing;
         }
 
-        // Nodos de Escenarios (Relaciones Clave)
+        // Nodos de Trayectos más Frecuentes
         for (let key in scenariosData) {
             let s = scenariosData[key];
 
             const dotGeo = new THREE.SphereGeometry(9.5, 20, 20);
-            const dotMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+            const dotMat = new THREE.MeshBasicMaterial({ color: 0x111115 });
             const dot = new THREE.Mesh(dotGeo, dotMat);
             dot.position.set(s.x, 20, s.z);
             dot.visible = false;
@@ -628,7 +622,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return activeIds[activeIds.length - 1];
     }
 
-    // --- TEJIDO MATEMÁTICO PROPORCIONAL (CON HEBRAS DOBLES ENSANCHADAS EN MODO BLANCO) ---
+    // --- TEJIDO MATEMÁTICO PROPORCIONAL ---
     function generateThreads(animateTransition = true) {
         baseLines.length = 0;
         highlightedCornerId = null;
@@ -647,7 +641,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const blendMode = isLightMode ? THREE.NormalBlending : THREE.AdditiveBlending;
         const baseOpacity = isLightMode ? 0.42 : 0.16;
 
-        for (let i = 0; i < 280; i++) {
+        // Cantidad de ondas coherente según el modo o trayecto seleccionado
+        let totalThreads = 280;
+        if (activeScenario === 'intermodal') {
+            totalThreads = 190; // Mayor volumen (5.000 personas • 53/min)
+        } else if (activeScenario === 'laboral') {
+            totalThreads = 135; // Volumen medio-alto (3.672 personas • 43/min)
+        } else if (activeScenario === 'paseo') {
+            totalThreads = 95;  // Volumen más pausado y espaciado (3.627 personas • 40/min)
+        } else if (activeIds.length < 6) {
+            // Proporcional a la suma de flujo de las esquinas activas
+            const sumFlow = activeIds.reduce((acc, id) => acc + corners[id].peatonesMin, 0);
+            totalThreads = Math.max(45, Math.round((sumFlow / 136.6) * 280));
+        }
+
+        for (let i = 0; i < totalThreads; i++) {
             let startId = pickWeightedCorner(activeIds);
             let targetId = startId;
 
@@ -667,16 +675,37 @@ document.addEventListener('DOMContentLoaded', () => {
 
             let rSeedA = Math.random() * Math.PI * 2;
             let rSeedB = Math.random() * Math.PI * 2;
+            let laneOffset = (Math.random() - 0.5) * 28;
 
             for (let j = 0; j <= segments; j++) {
                 let t = j / segments;
                 let px = c1.x + (c2.x - c1.x) * t;
                 let pz = c1.z + (c2.z - c1.z) * t;
-
                 let envelope = Math.sin(t * Math.PI);
-                px += Math.sin(t * 10 + rSeedA) * 22 * envelope;
-                pz += Math.sin(t * 12 + rSeedB) * 22 * envelope;
                 let py = envelope * (15 + baseElevation);
+
+                // Comportamiento diferenciado según el Trayecto Frecuente activo
+                if (activeScenario === 'intermodal') {
+                    // TRANSBORDO MICRO ↔ METRO: Corredor encauzado, ordenado y continuo en oleadas
+                    px += (Math.sin(t * Math.PI * 2 + rSeedA) * 9 + laneOffset * 0.7) * envelope;
+                    pz += Math.cos(t * Math.PI * 2 + rSeedB) * 8 * envelope;
+                    py = envelope * (18 + distance * 0.18) + Math.sin(t * Math.PI * 3 + rSeedA) * 6 * envelope;
+                } else if (activeScenario === 'laboral') {
+                    // CAMINO RÁPIDO BANCOS ↔ PARADEROS: Trayecto directo, rasante y tenso con esquives bruscos al cruzar la calle
+                    px += Math.sin(t * 18 + rSeedA) * 14 * envelope;
+                    pz += (laneOffset * 0.5 + Math.sin(t * 16 + rSeedB) * 10) * envelope;
+                    let dodgeSpike = Math.exp(-Math.pow((t - 0.5) * 5.5, 2)) * Math.abs(Math.sin(j * 3.5 + rSeedA)) * 55;
+                    py = envelope * (10 + distance * 0.12) + dodgeSpike;
+                } else if (activeScenario === 'paseo') {
+                    // PASEO COMERCIO ↔ MONUMENTO: Deambulación sinuosa, curvas anchas y arcos suaves y contemplativos
+                    px += Math.sin(t * 5 + rSeedA) * 42 * envelope;
+                    pz += (Math.cos(t * 4 + rSeedB) * 48 + laneOffset * 1.4) * envelope;
+                    py = envelope * (28 + distance * 0.32) + Math.sin(t * 6 + rSeedB) * 14 * envelope;
+                } else {
+                    // Flujo general de las 6 esquinas
+                    px += Math.sin(t * 10 + rSeedA) * 22 * envelope;
+                    pz += Math.sin(t * 12 + rSeedB) * 22 * envelope;
+                }
 
                 if (frictions.vehiculos) {
                     let distV = Math.hypot(px - frictionZones.vehiculos.x, pz - frictionZones.vehiculos.z);
@@ -716,7 +745,14 @@ document.addEventListener('DOMContentLoaded', () => {
             baseGeometry.setDrawRange(0, 0);
 
             const pulseGeometry = baseGeometry.clone();
-            let growthSpeed = (Math.random() * 1.5) + 0.6;
+
+            // Velocidad diferenciada según la vocación real del trayecto
+            let speedMultiplier = 1.0;
+            if (activeScenario === 'intermodal') speedMultiplier = 1.15; // Ritmo constante de transbordo
+            else if (activeScenario === 'laboral') speedMultiplier = 1.85; // Paso muy rápido laboral (pausa 5%)
+            else if (activeScenario === 'paseo') speedMultiplier = 0.55; // Paso lento de paseo y espera (pausa 11%)
+
+            let growthSpeed = ((Math.random() * 1.2) + 0.65) * speedMultiplier;
 
             const baseMaterial = new THREE.LineBasicMaterial({
                 color: activeCol,
@@ -737,7 +773,7 @@ document.addEventListener('DOMContentLoaded', () => {
             threadsGroup.add(baseLine);
             baseLines.push(baseLine);
 
-            // Hebra gemela ligeramente desplazada para ensanchar el trazo ópticamente en Modo Blanco
+            // Hebra gemela ligeramente desplazada para ensanchar el trazo ópticamente en Modo Claro
             const companionLine = new THREE.Line(baseGeometry, baseMaterial.clone());
             companionLine.position.set(1.1, 0.7, 1.1);
             companionLine.visible = isLightMode;
@@ -766,7 +802,7 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             threadsGroup.add(pulseLine);
 
-            // Pulso gemelo desplazado para mayor grosor en Modo Blanco
+            // Pulso gemelo desplazado para mayor grosor en Modo Claro
             const companionPulse = new THREE.Line(pulseGeometry, pulseMaterial);
             companionPulse.position.set(-1.1, 0.8, -1.1);
             companionPulse.visible = isLightMode;
@@ -788,31 +824,32 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- PLANO TÉCNICO Y LEYENDA DEL MAPA ---
-    const planeGeo = new THREE.PlaneGeometry(800, 600);
-    const planeMat = new THREE.MeshBasicMaterial({ color: 0x050507, side: THREE.DoubleSide, transparent: true, opacity: 0 });
+    // --- PLANO TÉCNICO Y LEYENDA DEL MAPA (EXTENDIDO A TODA LA GRILLA SIN RECTÁNGULO GRIS) ---
+    const planeGeo = new THREE.PlaneGeometry(900, 900);
+    const planeMat = new THREE.MeshBasicMaterial({ color: 0xf4f3ef, side: THREE.DoubleSide, transparent: true, opacity: 0, depthWrite: false });
     const plane = new THREE.Mesh(planeGeo, planeMat);
     plane.rotation.x = Math.PI / 2;
     plane.position.y = -3;
     plane.userData = {
         type: 'map',
-        name: 'LA HUELLA PEATONAL VS. TRAZA URBANA',
+        name: 'CAMINOS REALES VS. CALLES DE LA PLAZA',
         color: '#ffffff',
-        data: 'Aunque la arquitectura impone calles y cruces habilitados, las ondas muestran cómo las personas fluyen libremente buscando la ruta más eficiente o esquivando barreras.\n\nEntre el 19% y el 56% de los cruces ignora la ortogonalidad de las aceras.'
+        data: 'Aunque las veredas y pasos de cebra marcan por dónde caminar, las ondas muestran cómo las personas buscan la ruta más corta o esquivan obstáculos.\n\nEntre el 19% y el 56% de la gente cruza por fuera de los pasos habilitados.'
     };
     concretoGroup.add(plane);
     hitboxes.push(plane);
 
     const gridDark = new THREE.GridHelper(900, 30, 0x444455, 0x1a1a24);
     gridDark.position.y = -2;
+    gridDark.visible = false;
     concretoGroup.add(gridDark);
 
     const gridLight = new THREE.GridHelper(900, 30, 0x777785, 0xc8c6be);
     gridLight.position.y = -2;
-    gridLight.visible = false;
+    gridLight.visible = true;
     concretoGroup.add(gridLight);
 
-    const boxMat = new THREE.MeshBasicMaterial({ color: 0x8899aa, wireframe: true, transparent: true, opacity: 0 });
+    const boxMat = new THREE.MeshBasicMaterial({ color: 0x181a20, wireframe: true, transparent: true, opacity: 0 });
     const islaPratCochrane = new THREE.Mesh(new THREE.BoxGeometry(200, 15, 200), boxMat); islaPratCochrane.position.set(-130, 7.5, 0);
     const islaCochraneBlanco = new THREE.Mesh(new THREE.BoxGeometry(200, 15, 200), boxMat); islaCochraneBlanco.position.set(130, 7.5, 0);
     const mNorteIzq = new THREE.Mesh(new THREE.BoxGeometry(100, 15, 120), boxMat); mNorteIzq.position.set(-330, 7.5, -260);
@@ -828,14 +865,14 @@ document.addEventListener('DOMContentLoaded', () => {
     concretoGroup.visible = false;
     concretoGroup.position.y = -30;
 
-    // --- CAMBIO DINÁMICO ENTRE MODO OSCURO Y MODO BLANCO ---
+    // --- CAMBIO DINÁMICO ENTRE FONDO CLARO Y FONDO OSCURO ---
     const btnTheme = document.getElementById('btn-theme');
     const themeText = document.getElementById('theme-text');
     const btnConcreto = document.getElementById('btn-concreto');
 
     function updateConcretoButtonStyles() {
         if (!isAbstract) {
-            btnConcreto.innerText = "VOLVER AL VOLUMEN ABSTRACTO";
+            btnConcreto.innerText = "OCULTAR MAPA Y CALLES";
             if (isLightMode) {
                 btnConcreto.style.background = "#ffffff";
                 btnConcreto.style.color = "#111115";
@@ -846,7 +883,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btnConcreto.style.borderColor = "transparent";
             }
         } else {
-            btnConcreto.innerText = "REVELAR TERRITORIO";
+            btnConcreto.innerText = "MOSTRAR MAPA Y CALLES";
             if (isLightMode) {
                 btnConcreto.style.background = "#111115";
                 btnConcreto.style.color = "#ffffff";
@@ -862,7 +899,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function applyThemeToScene() {
         document.body.classList.toggle('light-mode', isLightMode);
         if (themeText) {
-            themeText.innerText = isLightMode ? 'MODO BLANCO: ACTIVADO' : 'MODO BLANCO: DESACTIVADO';
+            themeText.innerText = isLightMode ? 'CAMBIAR A FONDO OSCURO' : 'CAMBIAR A FONDO CLARO';
         }
 
         // 1. Niebla y fondo 3D
@@ -890,7 +927,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 3. Nodos de relaciones clave (oscuros sobre blanco, blancos sobre negro)
+        // 3. Nodos de trayectos frecuentes (oscuros sobre blanco, blancos sobre negro)
         for (let key in scenariosData) {
             const s = scenariosData[key];
             if (s.dot) {
@@ -898,7 +935,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 4. Anillos de fricciones
+        // 4. Anillos de obstáculos
         for (let fKey in frictionZones) {
             const fRing = frictionRings[fKey];
             const fZone = frictionZones[fKey];
@@ -912,10 +949,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // 5. Plano territorial y manzanas wireframe
         gridDark.visible = !isLightMode;
         gridLight.visible = isLightMode;
-        planeMat.color.setHex(isLightMode ? 0xe8e6df : 0x050507);
         boxMat.color.setHex(isLightMode ? 0x181a20 : 0x8899aa);
         if (!isAbstract) {
-            planeMat.opacity = isLightMode ? 0.92 : 0.85;
             boxMat.opacity = isLightMode ? 0.88 : 0.8;
         }
         updateConcretoButtonStyles();
@@ -988,6 +1023,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.fonts.ready.then(() => {
         createCornerLabels();
         generateThreads(false);
+        applyThemeToScene();
         animate();
 
         if (typeof gsap !== 'undefined') {
@@ -1075,12 +1111,12 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.to(mainGroup.rotation, { y: 0, duration: 1.5, ease: "power3.out" });
 
         if (type === 'scenario') {
-            // SECUENCIA 1: Vista de Planta (Ligeramente desfasada en Z para EVITAR GIMBAL LOCK)
+            // SECUENCIA 1: Vista de Planta
             const planX = x;
             const planZ = z + 20;
             const planY = 550;
 
-            // SECUENCIA 2: Desciende a Vista Orbital (Isométrica 45 grados perfecta)
+            // SECUENCIA 2: Desciende a Vista Orbital Isométrica
             const orbitX = x + 180;
             const orbitY = 150;
             const orbitZ = z + 180;
@@ -1093,7 +1129,6 @@ document.addEventListener('DOMContentLoaded', () => {
             tlTarget.to(controls.target, { x: x, y: 0, z: z, duration: 1.5, ease: "power3.out" })
                     .to(controls.target, { x: x, y: 0, z: z, duration: 2.5, ease: "power2.inOut", delay: 0.5 });
         } else {
-            // Animación Normal
             const camX = x + 200;
             const camY = 200;
             const camZ = z + 200;
@@ -1164,7 +1199,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Bloqueamos todas las interacciones de hover mientras corre la cinemática inicial o un vuelo de cámara
         if (controls.enabled && !isIntroPlaying) {
-            // Prioridad 1: Nodos de esquina, escenarios y zonas de fricción
+            // Prioridad 1: Nodos de esquina, trayectos y zonas de obstáculo
             const nodeIntersects = raycaster.intersectObjects(hitboxes);
             for (let i = 0; i < nodeIntersects.length; i++) {
                 let candidate = nodeIntersects[i].object;
@@ -1257,7 +1292,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Animación de crecimiento y pulsos viajeros en los hilos (más largos en Modo Blanco)
+        // Animación de crecimiento y pulsos viajeros en los hilos
         const pulseSpan = isLightMode ? 24 : 16;
         threadsGroup.children.forEach(line => {
             if (line.userData.type === 'base') {
@@ -1454,7 +1489,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 gsap.to(controls.target, { x: 0, y: 0, z: 0, duration: 2.5, ease: "power3.inOut" });
                 gsap.to(mainGroup.rotation, { y: 0, duration: 2, ease: "power3.inOut" });
                 gsap.to(concretoGroup.position, { y: 0, duration: 1.6, ease: "expo.out" });
-                gsap.to(planeMat, { opacity: isLightMode ? 0.92 : 0.85, duration: 1.4, ease: "power2.out" });
                 gsap.to(boxMat, { opacity: isLightMode ? 0.88 : 0.8, duration: 1.6, ease: "power2.out" });
 
                 tooltip.classList.remove('visible');
@@ -1467,7 +1501,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 gsap.to(controls.target, { x: 0, y: 0, z: 0, duration: 2.0, ease: "power3.inOut" });
                 gsap.to(concretoGroup.position, { y: -30, duration: 1.1, ease: "power2.in" });
-                gsap.to(planeMat, { opacity: 0, duration: 0.9 });
                 gsap.to(boxMat, {
                     opacity: 0,
                     duration: 0.9,
@@ -1477,45 +1510,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const btnReset = document.getElementById('btn-reset');
-    if (btnReset) {
-        btnReset.addEventListener('click', (e) => {
-            e.preventDefault();
-            finishIntro(false);
-
-            activeScenario = null;
-            document.querySelectorAll('.scenario-btn, .friction-btn').forEach(b => b.classList.remove('active'));
-            document.querySelectorAll('.corner-btn').forEach(b => b.classList.add('active'));
-
-            for (let key in activeCorners) {
-                activeCorners[key] = true;
-                if (corners[key].sprite) corners[key].sprite.visible = true;
-                if (corners[key].dot) corners[key].dot.visible = true;
-                if (corners[key].ring) corners[key].ring.visible = true;
-            }
-            for (let key in frictions) {
-                frictions[key] = false;
-                toggleFrictionRing(key, false);
-            }
-            for (let key in scenariosData) {
-                scenariosData[key].dot.visible = false;
-            }
-
-            if (!isAbstract) {
-                btnConcreto.click();
-            } else {
-                resetCamera();
-            }
-            generateThreads(true);
-        });
-    }
-
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const sidebar = document.getElementById('sidebar');
     if (mobileMenuBtn && sidebar) {
         mobileMenuBtn.addEventListener('click', () => {
             const isOpen = sidebar.classList.toggle('open');
-            mobileMenuBtn.innerText = isOpen ? 'Cerrar ✕' : 'Controles';
+            mobileMenuBtn.innerText = isOpen ? 'Cerrar ✕' : 'Menú';
         });
     }
 
