@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing — Urdimbre Peatonal | Flujos Sotomayor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-paper: #faf9f8;
+            --bg-ink: #08080b;
+            --text-main: #16161a;
+            --text-body: #3d3d45;
+            --text-muted: #71717a;
+            --rule: rgba(22, 22, 26, 0.14);
+            --c-e1: #27a2b9;
+            --c-e2: #d99b00;
+            --c-e3: #d13a5b;
+            --c-e4: #5db930;
+            --c-e5: #1f64c6;
+            --c-e6: #c9252c;
+        }
+
+        * { box-sizing: border-box; }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background-color: var(--bg-paper);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* BARRA SUPERIOR MINIMALISTA SIN CAJAS */
+        .top-bar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 249, 248, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .color-line {
+            height: 4px;
+            width: 100%;
+            background: linear-gradient(to right, #27a2b9, #e5c31b, #d13a5b, #5db930, #1f64c6, #c9252c);
+        }
+
+        .nav-wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 18px 6%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-brand {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 900;
+            font-size: 0.85em;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.7em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .nav-links a.return-link {
+            color: var(--text-main);
+            border-bottom: 2px solid var(--text-main);
+            padding-bottom: 3px;
+        }
+
+        /* PLIEGO EDITORIAL PRINCIPAL */
+        .editorial-sheet {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 6%;
+        }
+
+        /* CABECERA MANIFIESTO */
+        .manifesto-header {
+            padding: 96px 0 64px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .kicker {
+            font-size: 0.7em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 18px;
+        }
+
+        .manifesto-header h1 {
+            font-size: clamp(2.4em, 5vw, 4.2em);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1.8px;
+            line-height: 1.02;
+            margin: 0 0 24px 0;
+            color: var(--text-main);
+        }
+
+        .color-bar {
+            height: 6px;
+            width: 110px;
+            margin-bottom: 34px;
+            background: linear-gradient(to right, #27a2b9, #e5c31b, #d13a5b, #5db930, #1f64c6, #c9252c);
+            border-radius: 3px;
+        }
+
+        .lead-quote {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: clamp(1.18em, 2vw, 1.5em);
+            line-height: 1.65;
+            color: #2c2927;
+            max-width: 780px;
+            margin: 0;
+        }
+
+        /* FRANJA ABIERTA DE CIFRAS (SIN CAJAS) */
+        .open-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            padding: 44px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .metric-item .m-num {
+            display: block;
+            font-size: clamp(2em, 3.4vw, 2.9em);
+            font-weight: 900;
+            letter-spacing: -1.5px;
+            line-height: 1;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .metric-item .m-label {
+            display: block;
+            font-size: 0.68em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .metric-item .m-note {
+            display: block;
+            font-size: 0.78em;
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* CAPÍTULOS ASIMÉTRICOS (COLUMNA ÍNDICE + COLUMNA PROSA) */
+        .chapter {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 60px;
+            padding: 84px 0;
+            border-bottom: 1px solid var(--rule);
+            align-items: start;
+        }
+
+        .chapter-index {
+            position: sticky;
+            top: 90px;
+        }
+
+        .chapter-num {
+            font-size: 0.72em;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--c-e1);
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .chapter-index h2 {
+            font-size: 1.45em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            line-height: 1.18;
+            margin: 0 0 14px 0;
+        }
+
+        .chapter-index p {
+            font-size: 0.8em;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .chapter-body h3 {
+            font-size: 1.05em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-main);
+            margin: 38px 0 12px 0;
+        }
+
+        .chapter-body h3:first-child {
+            margin-top: 0;
+        }
+
+        .chapter-body p {
+            font-size: 1.05em;
+            line-height: 1.85;
+            color: var(--text-body);
+            margin: 0 0 22px 0;
+            text-align: justify;
+        }
+
+        .chapter-body strong {
+            color: var(--text-main);
+            font-weight: 800;
+        }
+
+        /* LISTA EDITORIAL DE MECÁNICAS DE LA VISUALIZACIÓN (LÍNEAS FINAS, CERO CAJAS) */
+        .mechanics-list {
+            margin-top: 16px;
+        }
+
+        .mechanic-row {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 20px;
+            padding: 28px 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        .mechanic-row:last-child {
+            border-bottom: 1px solid var(--rule);
+        }
+
+        .mechanic-idx {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.35em;
+            color: var(--text-muted);
+            padding-top: 2px;
+        }
+
+        .mechanic-content h4 {
+            font-size: 0.95em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin: 0 0 8px 0;
+            color: var(--text-main);
+        }
+
+        .mechanic-content p {
+            font-size: 0.95em;
+            line-height: 1.75;
+            margin: 0;
+            text-align: left;
+        }
+
+        /* BANDA CONTINUA OSCURA PARA LAS TRES TOPOGRAFÍAS DE LA FRICCIÓN */
+        .dark-bleed {
+            background-color: var(--bg-ink);
+            color: #f0f0f2;
+            padding: 96px 0;
+        }
+
+        .dark-bleed .kicker { color: #888; }
+        .dark-bleed h2 {
+            font-size: clamp(1.8em, 3.2vw, 2.6em);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.8px;
+            margin: 0 0 18px 0;
+        }
+
+        .dark-intro {
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: #a1a1aa;
+            max-width: 740px;
+            margin-bottom: 56px;
+        }
+
+        .topography-stream {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+            padding-top: 44px;
+        }
+
+        .topo-column {
+            position: relative;
+        }
+
+        .topo-line {
+            height: 3px;
+            width: 44px;
+            margin-bottom: 20px;
+        }
+
+        .topo-column h3 {
+            font-size: 1.1em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin: 0 0 8px 0;
+            color: #fff;
+        }
+
+        .topo-stat {
+            display: block;
+            font-size: 0.72em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            margin-bottom: 16px;
+        }
+
+        .topo-column p {
+            font-size: 0.92em;
+            line-height: 1.8;
+            color: #b4b4be;
+            margin: 0 0 18px 0;
+        }
+
+        .topo-math {
+            font-family: monospace;
+            font-size: 0.8em;
+            color: rgba(255, 255, 255, 0.65);
+            border-left: 2px solid rgba(255, 255, 255, 0.25);
+            padding-left: 12px;
+        }
+
+        /* LISTADO ABIERTO DE LAS 6 ESQUINAS Y RELACIONES */
+        .corners-ledger {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 12px;
+            font-size: 0.88em;
+        }
+
+        .corners-ledger th {
+            text-align: left;
+            font-size: 0.72em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--text-muted);
+            padding: 12px 10px;
+            border-bottom: 2px solid var(--text-main);
+        }
+
+        .corners-ledger td {
+            padding: 18px 10px;
+            border-bottom: 1px solid var(--rule);
+            color: var(--text-body);
+        }
+
+        .corners-ledger td strong {
+            color: var(--text-main);
+        }
+
+        .swatch {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .relations-open {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 52px;
+            padding-top: 36px;
+            border-top: 1px solid var(--rule);
+        }
+
+        .rel-col h4 {
+            font-size: 0.92em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin: 0 0 6px 0;
+        }
+
+        .rel-col span {
+            display: block;
+            font-size: 0.72em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+
+        .rel-col p {
+            font-size: 0.88em !important;
+            line-height: 1.72 !important;
+            text-align: left !important;
+            margin: 0 !important;
+        }
+
+        /* CIERRE Y RETORNO A LA VISUALIZACIÓN */
+        .closing-links {
+            padding: 76px 0;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 32px;
+            flex-wrap: wrap;
+        }
+
+        .closing-links a.big-return {
+            font-size: clamp(1.3em, 2.5vw, 2em);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 3px solid var(--text-main);
+            padding-bottom: 6px;
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .closing-links a.big-return:hover {
+            color: var(--c-e1);
+            border-color: var(--c-e1);
+        }
+
+        .external-refs {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .external-refs a {
+            font-size: 0.75em;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .external-refs a:hover {
+            color: var(--text-main);
+        }
+
+        /* FOOTER NEGRO CON DESCRIPCIÓN Y AUTORÍA ÚNICA */
+        footer {
+            background-color: var(--bg-ink);
+            color: #a1a1aa;
+            font-size: 0.82em;
+        }
+
+        .footer-inner {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 56px 6% 48px 6%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-about {
+            max-width: 560px;
+        }
+
+        .footer-about h4 {
+            color: #ffffff;
+            font-size: 0.95em;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 0 0 10px 0;
+        }
+
+        .footer-about p {
+            margin: 0;
+            line-height: 1.7;
+            color: #a1a1aa;
+            font-size: 0.95em;
+        }
+
+        .footer-meta {
+            text-align: right;
+            line-height: 1.7;
+        }
+
+        .footer-meta span {
+            display: block;
+            color: #71717a;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #ffffff;
+            font-weight: 800;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+            padding-bottom: 1px;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--c-e1);
+            border-color: var(--c-e1);
+        }
+
+        @media (max-width: 860px) {
+            .open-metrics { grid-template-columns: repeat(2, 1fr); }
+            .chapter { grid-template-columns: 1fr; gap: 24px; padding: 56px 0; }
+            .chapter-index { position: static; }
+            .topography-stream, .relations-open { grid-template-columns: 1fr; gap: 32px; }
+            .footer-meta { text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="top-bar">
+        <div class="color-line"></div>
+        <div class="nav-wrap">
+            <a href="index.html" class="nav-brand">Urdimbre Peatonal</a>
+            <nav class="nav-links">
+                <a href="#origen">El Origen</a>
+                <a href="#interaccion">Cómo Funciona</a>
+                <a href="#fricciones">Topografías</a>
+                <a href="#esquinas">Esquinas</a>
+                <a href="index.html" class="return-link">← Volver a la Visualización</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="editorial-sheet">
+
+            <!-- MANIFIESTO PRINCIPAL -->
+            <section class="manifesto-header">
+                <span class="kicker">Plaza Sotomayor, Valparaíso • Estudio de Flujos y Fricciones</span>
+                <h1>De lo Tangible<br>a lo Generativo</h1>
+                <div class="color-bar"></div>
+                <p class="lead-quote">
+                    «En esta visualización, los flujos de las personas se transforman en ondas de luz y color que atraviesan la plaza. Al suprimir los límites arquitectónicos, revelamos que es el movimiento humano y su fricción lo que esculpe el vacío.»
+                </p>
+            </section>
+
+            <!-- CIFRAS EN ABIERTO -->
+            <div class="open-metrics">
+                <div class="metric-item">
+                    <span class="m-num">12.299</span>
+                    <span class="m-label">Peatones Contabilizados</span>
+                    <span class="m-note">Medidos a lo largo de 539 minutos de observación continua en terreno.</span>
+                </div>
+                <div class="metric-item">
+                    <span class="m-num">96</span>
+                    <span class="m-label">Personas Encuestadas</span>
+                    <span class="m-note">94,8% población activa y 59,4% impulsada por el transbordo de transporte público.</span>
+                </div>
+                <div class="metric-item">
+                    <span class="m-num">6 Esquinas</span>
+                    <span class="m-label">Ondas de Flujo</span>
+                    <span class="m-note">Cada vértice emite ondas de su propio color que representan el paso real de la gente.</span>
+                </div>
+                <div class="metric-item">
+                    <span class="m-num">56%</span>
+                    <span class="m-label">Cruce Informal Máximo</span>
+                    <span class="m-note">Porcentaje de transeúntes que cruza fuera de paso habilitado en Cochrane Sur (E4).</span>
+                </div>
+            </div>
+
+            <!-- CAPÍTULO 01: METODOLOGÍA Y ABSTRACCIÓN -->
+            <section id="origen" class="chapter">
+                <div class="chapter-index">
+                    <span class="chapter-num">01 — FUNDAMENTO</span>
+                    <h2>Las Ondas como Flujo Humano</h2>
+                    <p>De la observación física en la Plaza Sotomayor a un tejido tridimensional en movimiento.</p>
+                </div>
+
+                <div class="chapter-body">
+                    <h3>El Origen de los Datos: Personas Convertidas en Ondas</h3>
+                    <p>
+                        El proyecto <strong>Urdimbre Peatonal</strong> nace del levantamiento directo de datos en la Plaza Sotomayor de Valparaíso. Tras observar sistemáticamente sus seis esquinas durante <strong>539 minutos</strong> (registrando el paso de <strong>12.299 peatones</strong>) y encuestar a <strong>96 transeúntes en terreno</strong>, tradujimos las trayectorias reales de las personas en un sistema vivo de <strong>ondas tridimensionales</strong>. Cada onda luminosa que viaja de un extremo a otro representa el flujo de personas desplazándose entre las esquinas de la plaza, exponiendo cómo la ciudad habitada desborda constantemente a la ciudad planificada.
+                    </p>
+                    <p>
+                        Los registros demostraron que la plaza está dominada por la <strong>población activa (94,8% entre 18 y 65 años)</strong> fuertemente impulsada por la intermodalidad del transporte público (<strong>59,4%</strong> entre micro, metro y colectivo). Por el contrario, el adulto mayor (<strong>5,2%</strong>) queda drásticamente marginado del flujo debido a las barreras viales, los tiempos de cruce y la falta de lugares de descanso.
+                    </p>
+
+                    <h3>La Abstracción: El Espacio Esculpido por el Vacío</h3>
+                    <p>
+                        ¿Por qué borrar la arquitectura literal en la vista principal? Porque el espacio público no se define únicamente por el hormigón, sino por la urdimbre de pasos que lo transitan. Al suprimir los edificios y las veredas, dejamos que <strong>las ondas de flujo peatonal dibujen la plaza en negativo</strong>. Solo al presionar <strong>"Revelar Territorio"</strong> emerge la traza ortogonal de las manzanas y calles, haciendo evidente cómo la huella humana ignora las aceras e irrumpe en diagonal por el vacío.
+                    </p>
+                </div>
+            </section>
+
+            <!-- CAPÍTULO 02: CÓMO FUNCIONA LA VISUALIZACIÓN Y SUS ADICIONES -->
+            <section id="interaccion" class="chapter" style="border-bottom: none;">
+                <div class="chapter-index">
+                    <span class="chapter-num">02 — FUNCIONAMIENTO</span>
+                    <h2>Cómo Leer e Interactuar con la Visualización</h2>
+                    <p>Guía de los sistemas interactivos que traducen el movimiento peatonal en ondas.</p>
+                </div>
+
+                <div class="chapter-body">
+                    <p>
+                        En la visualización, cada una de las 6 esquinas de acceso tiene asignado un color e irradia pulsos que viajan hacia los demás vértices. El sistema cuenta con cinco mecánicas principales para explorar los datos recolectados:
+                    </p>
+
+                    <div class="mechanics-list">
+                        <div class="mechanic-row">
+                            <span class="mechanic-idx">i.</span>
+                            <div class="mechanic-content">
+                                <h4>Cantidad de Peatones al Pasar el Cursor sobre las Ondas</h4>
+                                <p>
+                                    Al posar el cursor directamente sobre <strong>cualquier onda de color</strong> (o sobre el nodo de su esquina), el tejido ilumina todas las ondas que nacen de ese punto y atenúa el resto. Junto al cursor se despliega la ficha de esa corriente con el <strong>total de peatones contabilizados</strong>, el flujo promedio por minuto, el pico máximo registrado, el porcentaje de personas que se detienen (en pausa) y la proporción de cruces fuera de paso habilitado.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mechanic-row">
+                            <span class="mechanic-idx">ii.</span>
+                            <div class="mechanic-content">
+                                <h4>Densidad de Ondas Proporcional al Flujo Real</h4>
+                                <p>
+                                    La cantidad de ondas que emite cada esquina no es aleatoria: responde matemáticamente al volumen real de peatones por minuto medido en terreno. Así, las esquinas de mayor descarga intermodal como <strong>E1: Blanco N. (26,5 peatones/min)</strong> y <strong>E2: Est. Puerto (26,4 peatones/min)</strong> tejen un caudal de ondas más denso que sectores como <strong>E6: Armada (18,6 peatones/min)</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mechanic-row">
+                            <span class="mechanic-idx">iii.</span>
+                            <div class="mechanic-content">
+                                <h4>Relaciones Clave y Vuelo de Cámara en Dos Tiempos</h4>
+                                <p>
+                                    Los botones de <strong>Relaciones Clave</strong> permiten aislar la conexión directa entre dos esquinas específicas (como el transbordo entre micro y metro en <code>E1 ↔ E2</code>). Al activarlos, la cámara realiza un recorrido en dos tiempos: primero sube a una <strong>vista de planta cenital</strong> para mostrar el trazado en el suelo y luego desciende a una <strong>vista orbital isométrica a 45°</strong> para apreciar la altura y curvatura de las ondas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mechanic-row">
+                            <span class="mechanic-idx">iv.</span>
+                            <div class="mechanic-content">
+                                <h4>Modo Blanco de Alto Contraste</h4>
+                                <p>
+                                    El botón <strong>Modo Blanco</strong> transforma el espacio oscuro en un lienzo claro de corte arquitectónico. Para que las ondas se lean con nitidez sobre el blanco, la visualización recalibra la saturación de los seis colores, invierte la tipografía a negro y ensancha ópticamente el grosor de cada onda en movimiento.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="mechanic-row">
+                            <span class="mechanic-idx">v.</span>
+                            <div class="mechanic-content">
+                                <h4>Velocidad del Tejido y Revelar Territorio</h4>
+                                <p>
+                                    El control deslizante permite desacelerar las ondas para inspeccionarlas con calma o acelerar el pulso del flujo urbano. Por su parte, el botón <strong>Revelar Territorio</strong> hace aparecer la cuadrícula de calles y edificios bajo las ondas para comparar las aceras formales con los caminos reales que toma la gente.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- BANDA OSCURA CONTINUA: LAS TRES TOPOGRAFÍAS DE LA FRICCIÓN -->
+        <section id="fricciones" class="dark-bleed">
+            <div class="editorial-sheet">
+                <span class="kicker">03 — Por qué se Deforman las Ondas</span>
+                <h2>Las Tres Topografías de la Fricción</h2>
+                <p class="dark-intro">
+                    Cuando el paso peatonal es fluido, las ondas describen arcos limpios y continuos. Sin embargo, al activar las <strong>Fricciones Estructurales</strong>, las ondas se deforman en altura y dirección según los tres principales obstáculos detectados en las encuestas:
+                </p>
+
+                <div class="topography-stream">
+                    <div class="topo-column">
+                        <div class="topo-line" style="background: #ff4444;"></div>
+                        <h3>1. Tensión Vehicular</h3>
+                        <span class="topo-stat" style="color: #ff4444;">26,0% de menciones • Hasta 16,0 veh/min</span>
+                        <p>
+                            Las ondas se quiebran y se elevan en <strong>picos agudos y violentos</strong>. Representa el estrés, la velocidad de los autos y la interrupción abrupta del paso al tener que esquivar el flujo vehicular pesado en los ejes Prat, Cochrane y Blanco.
+                        </p>
+                        <div class="topo-math">py += |sin(j × 5)| × 125 × influence</div>
+                    </div>
+
+                    <div class="topo-column">
+                        <div class="topo-line" style="background: #ffaa00;"></div>
+                        <h3>2. Nudos de Aglomeración</h3>
+                        <span class="topo-stat" style="color: #ffaa00;">13,5% de menciones • Hasta 19 en espera</span>
+                        <p>
+                            Las ondas pierden fluidez y se estancan a ras de suelo formando <strong>espirales densas</strong>. Grafica los bloqueos en veredas estrechas donde los flujos que salen del Metro (18,8%) chocan con las personas detenidas esperando micro en los paraderos (11,1% en pausa).
+                        </p>
+                        <div class="topo-math">px += sin(j × 2) × 50 • py -= 15 × influence</div>
+                    </div>
+
+                    <div class="topo-column">
+                        <div class="topo-line" style="background: #9b59b6;"></div>
+                        <h3>3. Desorientación Espacial</h3>
+                        <span class="topo-stat" style="color: #9b59b6;">16,7% desorientación • 56% cruce informal</span>
+                        <p>
+                            Las ondas se deshilachan, perdiendo su dirección recta para comenzar a <strong>oscilar y deambular</strong>. Evidencia la duda del peatón por la falta de señalización clara en la explanada central, lo que lleva a que hasta un 56% cruce por lugares no habilitados.
+                        </p>
+                        <div class="topo-math">px += sin(j × 0.8) × 90 • pz += cos(j × 0.6) × 90</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPÍTULO 04: SÍNTESIS DE ESQUINAS Y RELACIONES -->
+        <div class="editorial-sheet">
+            <section id="esquinas" class="chapter">
+                <div class="chapter-index">
+                    <span class="chapter-num">04 — SÍNTESIS DE DATOS</span>
+                    <h2>Hilos de Origen y Relaciones Clave</h2>
+                    <p>Cifras consolidadas que alimentan cada color de onda dentro de la visualización.</p>
+                </div>
+
+                <div class="chapter-body">
+                    <table class="corners-ledger">
+                        <thead>
+                            <tr>
+                                <th>Esquina y Color de Onda</th>
+                                <th>Peatones Totales</th>
+                                <th>Ritmo (Pico)</th>
+                                <th>En Pausa</th>
+                                <th>Cruce Informal</th>
+                                <th>Flujo Vehicular</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="swatch" style="background:var(--c-e1)"></span><strong>E1: Blanco N.</strong></td>
+                                <td><strong>2.650</strong> (100 min)</td>
+                                <td>26,5/min (41,0)</td>
+                                <td>7,1%</td>
+                                <td>19% (13,6/min)</td>
+                                <td>16,0 veh/min</td>
+                            </tr>
+                            <tr>
+                                <td><span class="swatch" style="background:#e5c31b"></span><strong>E2: Est. Puerto</strong></td>
+                                <td><strong>2.350</strong> (89 min)</td>
+                                <td>26,4/min (45,2)</td>
+                                <td>9,0%</td>
+                                <td>27% (9,5/min)</td>
+                                <td>14,2 veh/min</td>
+                            </tr>
+                            <tr>
+                                <td><span class="swatch" style="background:var(--c-e3)"></span><strong>E3: Cochrane N.</strong></td>
+                                <td><strong>1.953</strong> (90 min)</td>
+                                <td>21,7/min (39,0)</td>
+                                <td><strong>11,1%</strong></td>
+                                <td>43% (11,6/min)</td>
+                                <td>11,1 veh/min</td>
+                            </tr>
+                            <tr>
+                                <td><span class="swatch" style="background:var(--c-e4)"></span><strong>E4: Cochrane S.</strong></td>
+                                <td><strong>1.800</strong> (90 min)</td>
+                                <td>20,0/min (29,8)</td>
+                                <td>9,1%</td>
+                                <td><strong>56%</strong> (10,4/min)</td>
+                                <td>9,5 veh/min</td>
+                            </tr>
+                            <tr>
+                                <td><span class="swatch" style="background:var(--c-e5)"></span><strong>E5: Eje Prat</strong></td>
+                                <td><strong>1.872</strong> (80 min)</td>
+                                <td>23,4/min (38,6)</td>
+                                <td>5,1%</td>
+                                <td>44% (9,0/min)</td>
+                                <td>10,1 veh/min</td>
+                            </tr>
+                            <tr>
+                                <td><span class="swatch" style="background:var(--c-e6)"></span><strong>E6: Armada</strong></td>
+                                <td><strong>1.674</strong> (90 min)</td>
+                                <td>18,6/min (37,2)</td>
+                                <td>5,4%</td>
+                                <td>49% (6,0/min)</td>
+                                <td>8,4 veh/min</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="relations-open">
+                        <div class="rel-col">
+                            <h4>E1 ↔ E2: El Eje Intermodal</h4>
+                            <span style="color: var(--c-e1);">5.000 peatones • 52,9/min</span>
+                            <p>El mayor volumen de transbordo: ondas densas que conectan mecánicamente la descarga de micros en Blanco con la Estación Puerto.</p>
+                        </div>
+                        <div class="rel-col">
+                            <h4>E4 ↔ E5: La Diagonal de Riesgo</h4>
+                            <span style="color: var(--c-e4);">3.672 peatones • 43,4/min</span>
+                            <p>Flujo laboral apresurado que une la esquina de mayor cruce informal (56%) con el corredor financiero e institucional de calle Prat.</p>
+                        </div>
+                        <div class="rel-col">
+                            <h4>E3 ↔ E6: El Paseo y el Sol</h4>
+                            <span style="color: var(--c-e3);">3.627 peatones • 40,3/min</span>
+                            <p>Trayecto que vincula la sombra saturada de espera en las marquesinas de Cochrane con la explanada abierta frente al monumento.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ENLACE DE RETORNO A LA VISUALIZACIÓN -->
+            <div class="closing-links">
+                <a href="index.html" class="big-return">← Volver a la Visualización</a>
+                <div class="external-refs">
+                    <a href="https://pedropablob.github.io/visualizando-los-flujos/" target="_blank" rel="noopener">Página de Registro Grupal ↗</a>
+                    <a href="https://wiki.ead.pucv.cl/Proyecto_de_Visualizaci%C3%B3n_-_Grupo_4" target="_blank" rel="noopener">Documentación en Wiki Casiopea ↗</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="color-line"></div>
+        <div class="footer-inner">
+            <div class="footer-about">
+                <h4>Urdimbre Peatonal</h4>
+                <p>
+                    Visualización generativa e interactiva que traduce los flujos, detenciones y fricciones peatonales registrados en la Plaza Sotomayor de Valparaíso en un tejido tridimensional de ondas de luz y color.
+                </p>
+            </div>
+            <div class="footer-meta">
+                <span>Escuela de Arquitectura y Diseño e[ad] PUCV • 2026</span>
+                <div>Proyecto y desarrollo web por <a href="https://wiki.ead.pucv.cl/Pedro_Beltr%C3%A1n" target="_blank" rel="noopener">Pedro Beltrán</a></div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
